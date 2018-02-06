@@ -5,3 +5,7 @@
 *~
 #*
 *#
+asm
+corewar
+cmake-build-debug
+CMakeLists.txt
