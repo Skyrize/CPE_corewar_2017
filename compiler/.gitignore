@@ -1,0 +1,10 @@
+*.o
+*.a
+#*
+*#
+*~
+.idea
+cmake-build-debug
+CMakeLists.txt
+asm
+.gitfolder
