@@ -11,8 +11,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "op.h"
-#include "vm.h"
 
 void	my_putchar(char c);
 
