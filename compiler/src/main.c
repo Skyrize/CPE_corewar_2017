@@ -8,6 +8,7 @@
 #include <my.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <asm.h>
 
 void print_help(void)
 {
@@ -50,4 +51,7 @@ void error_handling(int ac, char **av)
 int main(int ac, char **av)
 {
 	error_handling(ac, av);
+	get_fd(av[1]);
+	check_syntax();
+	return (0);
 }
