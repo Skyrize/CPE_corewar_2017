@@ -15,11 +15,10 @@ void check_syntax(void)
 {
 	int fd = get_fd(NULL);
 	char *line = get_next_line(fd);
+	bool is_valid = true;
 
 	while (line) {
-		my_putstr(line);
-		my_putchar('\n');
-		//TODO is line valid function
+		is_valid = is_line_valid(line);
 		free(line);
 		line = get_next_line(fd);
 	}

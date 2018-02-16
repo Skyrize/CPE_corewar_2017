@@ -64,7 +64,7 @@ char **my_split(char *str, char sp)
 	for (; i < grp_nbr; i += 1) {
 		len = get_group_len(str, sp, i);
 		ret[i] = malloc(sizeof(char) * (len + 1));
-		for (int j = 0; j < len + 1; j += 1) {
+		for (int j = 0; j < (len + 1); j += 1) {
 			ret[i][j] = '\0';
 		}
 	}
