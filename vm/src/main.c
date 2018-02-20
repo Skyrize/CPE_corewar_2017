@@ -23,8 +23,16 @@ int check_help(int size, char **str)
 
 int error_args_handling(int size, char **str)
 {
+	int fd = 0;
+
 	if (size < 3 || size > 5)
 		return (84);
+	for (int i = 1; i < size; i++) {
+		fd = open(str[i], O_RDONLY);
+		if (fd == -1)
+			return (84);
+		close(fd);
+	}
 	return (0);
 }
 
@@ -35,6 +43,10 @@ int main(int ac, char **av)
 		return (0);
 	if (error_args_handling(ac, av) == 84)
 		return (84);
-	set_champs_info(champs, ac - 1, av);
+	champs = set_champs_info(champs, ac - 1, av);
+	// while (champs != NULL) {
+	// 	my_printf("[%d] %s | Size = %d\n", champs->program_number, champs->program_name, champs->size);
+	// 	champs = champs->next;
+	// }
 	return (0);
 }

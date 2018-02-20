@@ -8,6 +8,8 @@
 #include "my.h"
 #include "op.h"
 #include <fcntl.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 typedef struct pc_s {
 	int idx;
@@ -25,11 +27,12 @@ typedef struct champ_s {
 	struct champ_s *next;
 } champ_t;
 
-union data {
+union number {
 	int nbr;
 	char str[4];
 };
 
-void set_champs_info(champ_t *, int , char **);
+champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
 int get_int(int);
+int reverse_int(int);
