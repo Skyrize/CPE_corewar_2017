@@ -66,6 +66,7 @@ champ_t *set_champs_info(champ_t *champs, int nb_champs, char **str)
 	get_header(champs, fd);
 	champs->program_number = 1;
 	champs->carry = 0;
+	champs->alive = 1;
 	for (int i = 1; i < REG_NUMBER; i++)
 		champs->reg[i] = 0;
 	init_pc(champs->pc);
