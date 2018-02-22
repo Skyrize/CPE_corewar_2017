@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 
+typdef byte char;
+
 union number {
 	int nbr;
 	char str[4];
