@@ -27,6 +27,7 @@ typedef struct champ_s {
 	int reg[REG_NUMBER];
 	int size;
 	bool carry;
+	bool alive;
 	char *program_name;
 	pc_t *pc;
 	struct champ_s *next;
