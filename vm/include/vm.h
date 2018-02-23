@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-typdef byte char;
+typedef byte char;
 
 union number {
 	int nbr;
