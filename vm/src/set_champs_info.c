@@ -34,7 +34,6 @@ void get_header(champ_t *champ, int fd)
 
 void init_pc(pc_t *pc)
 {
-	pc = malloc(sizeof(*pc));
 	pc->idx = 0;
 	pc->countdown = 0;
 	pc->next = NULL;
@@ -50,8 +49,10 @@ void add_to_list(champ_t *champs, char *pathname, int fd, int champ_number)
 	get_header(tmp, fd);
 	tmp->program_number = champ_number;
 	tmp->carry = 0;
+	tmp->reg[0] = champ_number;
 	for (int i = 1; i < REG_NUMBER; i++)
 		tmp->reg[i] = 0;
+	tmp->pc = malloc(sizeof(*tmp->pc));
 	init_pc(tmp->pc);
 	tmp->next = NULL;
 	champs->next = tmp;
@@ -66,8 +67,10 @@ champ_t *set_champs_info(champ_t *champs, int nb_champs, char **str)
 	get_header(champs, fd);
 	champs->program_number = 1;
 	champs->carry = 0;
+	champs->reg[0] = 1;
 	for (int i = 1; i < REG_NUMBER; i++)
 		champs->reg[i] = 0;
+	champs->pc = malloc(sizeof(*champs->pc));
 	init_pc(champs->pc);
 	champs->next = NULL;
 	close(fd);

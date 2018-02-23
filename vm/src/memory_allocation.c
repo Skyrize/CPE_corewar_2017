@@ -7,22 +7,27 @@
 
 #include "vm.h"
 
-void fill_memory_zone_owner(champ_t *champ, memory_t *vm, int zone)
+void fill_memory_zone(char *vm, char *path, int idx, int size)
 {
-	for (int i = zone; i < champ->size + zone; i++)
-		vm->owner[i] = champ->program_number;
+	int fd = open(path, O_RDONLY);
+
+	lseek(fd, 4 + PROG_NAME_LENGTH + 11 + COMMENT_LENGTH + 1, SEEK_SET);
+	for (int i = 0; i < size; i++)
+		read(fd, &vm[i + idx], size);
+	close(fd);
 }
 
-void memory_allocation_to_champs(memory_t *vm, champ_t *champs, int nb_champs)
+void memory_allocation_to_champs(char *vm, champ_t *champs, int nb_champs,
+					char **path)
 {
-	int zone = 0;
+	int pc = 0;
 
 	for (int i = 0; i < MEM_SIZE; i++)
-		vm->owner[i] = 0;
+		vm[i] = 0;
 	for (int i = 0; i < nb_champs; i++) {
-		zone = MEM_SIZE * i / nb_champs;
-		fill_memory_zone_owner(champs, vm, MEM_SIZE * i / nb_champs);
+		pc = MEM_SIZE * i / nb_champs;
+		champs->pc->idx = pc;
+		fill_memory_zone(vm, path[i], pc, champs->size);
 		champs = champs->next;
 	}
-	my_putchar('\n');
 }
