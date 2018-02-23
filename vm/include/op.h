@@ -34,11 +34,11 @@ typedef char    args_type_t;
 # define T_LAB           8       /* LABEL */
 
 typedef struct op_s {
-	char         *mnemonique;
-	char         nbr_args;
-	args_type_t  type[MAX_ARGS_NUMBER];
-	char         code;
-	int          nbr_cycles;
+	char *mnemonique;
+	char nbr_args;
+	args_type_t type[MAX_ARGS_NUMBER];
+	char code;
+	int nbr_cycles;
 } op_t;
 
 /*
@@ -70,7 +70,7 @@ typedef struct header_s {
 /*
 ** live
 */
-# define CYCLE_TO_DIE    1536   /* number of cycle before beig declared dead */
+# define CYCLE_TO_DIE    1536   /* number of cycle before being declared dead */
 # define CYCLE_DELTA     5
 # define NBR_LIVE        40
 
