@@ -18,7 +18,7 @@ char	*my_strstr(char const *str, char const *to_find)
 		}
 	}
 	if (to_find[checked] == '\0') {
-		return ((char*) &str[i - checked]);
+		return ((char *) &str[i - checked]);
 	} else {
 		return (0);
 	}
