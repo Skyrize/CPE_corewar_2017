@@ -15,11 +15,12 @@ int get_op(byte instruction)
 	return (i);
 }
 
-int execute_instruct(pc_t *pc, memory_t *vm)
+int execute_instruct(pc_t *pc, memory_t *vm, champ_t *champ)
 {
 	int op = get_op(vm->memory[tmp->idx]);
+	byte **tab;
 
-	//op_tab[op].fptr();
+	//op_tab[op].fptr(champ, pc, tab);
 	pc->countdown = op_tab[op].nbr_cycles;
 	return ();
 }

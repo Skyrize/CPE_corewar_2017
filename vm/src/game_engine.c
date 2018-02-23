@@ -8,13 +8,13 @@
 #include "vm.h"
 #include <stdint.h>
 
-void execute_pc(memory_t *vm, pc_t *pc)
+void execute_pc(memory_t *vm, pc_t *pc, champ_t *champ)
 {
 	pc_t *tmp = pc;
 
 	while (tmp) {
 		if (tmp->countdown == 0) {
-			tmp->idx += execute_instruct(tmp, vm);
+			tmp->idx += execute_instruct(tmp, vm, champ);
 		} else
 			tmp->countdown--;
 		tmp = tmp->next;
@@ -26,7 +26,7 @@ void execute_champs_pc(memory_t *vm, champ_t *champs)
 	champ_t *tmp = champs;
 
 	while (tmp) {
-		execute_pc(vm, tmp->pc);
+		execute_pc(vm, tmp->pc, champ);
 		tmp = tmp->next;
 	}
 }
