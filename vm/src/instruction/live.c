@@ -9,5 +9,5 @@
 
 void operate_live(champ_t *champ, pc_t *pc, byte **tab)
 {
-
+	champ->
 }
