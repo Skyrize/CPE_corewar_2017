@@ -1,26 +1,11 @@
-/*
-** EPITECH PROJECT, 2018
-** VM Corewar
-** File description:
-** NULL
-*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdio.h>
 
-#include "vm.h"
 
-int reverse_int(int nb)
-{
-	union number number;
-	char tmp;
-
-	number.nbr = nb;
-	tmp = number.str[0];
-	number.str[0] = number.str[3];
-	number.str[3] = tmp;
-	tmp = number.str[1];
-	number.str[1] = number.str[2];
-	number.str[2] = tmp;
-	return (number.nbr);
-}
+#include <limits.h>
 
 char *int_to_bin(unsigned int num)
 {
@@ -64,7 +49,7 @@ int *detect_parameters(int num);
 {
 	char *binary_number = int_to_bin(num);
 	int *parameters = malloc(sizeof(int) * 3);
-
 	assign_value_to_parameters(binary_number, parameters);
+
 	return (parameters);
 }
