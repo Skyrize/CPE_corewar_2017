@@ -11,7 +11,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-typedef char byte;
+#define LIVE "The player %d(%s)is alive."
+typedef unsigned char byte;
 
 union number {
 	int nbr;
