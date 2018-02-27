@@ -45,3 +45,6 @@ char *get_str(int);
 int get_int(int);
 int reverse_int(int);
 void memory_allocation_to_champs(char *, champ_t *, int, char **);
+char *int_to_bin(unsigned int);
+int *assign_value_to_parameters(char *, int *);
+int *detect_parameters(int);
