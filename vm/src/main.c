@@ -39,7 +39,7 @@ int error_args_handling(int size, char **str)
 int main(int ac, char **av)
 {
 	champ_t *champs = NULL;
-	char vm[MEM_SIZE] = {0};
+	unsigned char vm[MEM_SIZE] = {0};
 
 	if (check_help(ac, av) == 1)
 		return (0);
@@ -52,7 +52,7 @@ int main(int ac, char **av)
 		champs = champs->next;
 	}
 	for (int i = 0; i < MEM_SIZE; i++)
-		my_printf("%d\n", vm[i]);
+		my_printf("%d  ", (int)vm[i]);
 	//start_cycle_game(vm, champs);
 	return (0);
 }

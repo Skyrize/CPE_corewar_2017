@@ -60,7 +60,7 @@ int *assign_value_to_parameters(char *binary_number, int *parameters)
 	return (parameters);
 }
 
-int *detect_parameters(int num);
+int *detect_parameters(int num)
 {
 	char *binary_number = int_to_bin(num);
 	int *parameters = malloc(sizeof(int) * 3);

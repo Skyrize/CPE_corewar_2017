@@ -19,13 +19,14 @@ union number {
 };
 
 typedef struct memory_s {
-	char *vm;
+	unsigned char *vm;
 	int nbr_live;
 } memory_t;
 
 typedef struct pc_s {
 	int idx;
 	int countdown;
+	int champ_owner;
 	struct pc_s *next;
 } pc_t;
 
@@ -44,7 +45,7 @@ champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
 int get_int(int);
 int reverse_int(int);
-void memory_allocation_to_champs(char *, champ_t *, int, char **);
+void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
