@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-typedef byte char;
+typedef char byte;
 
 union number {
 	int nbr;
@@ -35,17 +35,11 @@ typedef struct champ_s {
 	struct champ_s *next;
 } champ_t;
 
-typedef struct memory_s {
-	char memory[MEM_SIZE];
-	int owner[MEM_SIZE];
-} memory_t;
-
-
 champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
 int get_int(int);
 int reverse_int(int);
-void memory_allocation_to_champs(memory_t *, champ_t *, int);
+void memory_allocation_to_champs(char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);

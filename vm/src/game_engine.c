@@ -8,7 +8,7 @@
 #include "vm.h"
 #include <stdint.h>
 
-void execute_pc(memory_t *vm, pc_t *pc, champ_t *champ)
+void execute_pc(char *vm, pc_t *pc, champ_t *champ)
 {
 	pc_t *tmp = pc;
 
@@ -21,17 +21,17 @@ void execute_pc(memory_t *vm, pc_t *pc, champ_t *champ)
 	}
 }
 
-void execute_champs_pc(memory_t *vm, champ_t *champs)
+void execute_champs_pc(char *vm, champ_t *champs)
 {
 	champ_t *tmp = champs;
 
 	while (tmp) {
-		execute_pc(vm, tmp->pc, champ);
+		execute_pc(vm, tmp->pc, champs);
 		tmp = tmp->next;
 	}
 }
 
-void start_cycle_game(memory_t *vm, champ_t *champs)
+void start_cycle_game(char *vm, champ_t *champs)
 {
 	unsigned int cycle_to_die = CYCLE_TO_DIE;
 	unsigned int i = cycle_to_die;
@@ -42,6 +42,6 @@ void start_cycle_game(memory_t *vm, champ_t *champs)
 			cycle_to_die -= CYCLE_DELTA;
 			i = cycle_to_die;
 		}
-		printf("%d\n", i);
+		my_printf("%d\n", i);
 	}
 }

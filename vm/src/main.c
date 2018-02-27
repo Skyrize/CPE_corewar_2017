@@ -39,18 +39,18 @@ int error_args_handling(int size, char **str)
 int main(int ac, char **av)
 {
 	champ_t *champs = NULL;
-	memory_t vm;
+	char vm[MEM_SIZE] = {0};
 
 	if (check_help(ac, av) == 1)
 		return (0);
 	if (error_args_handling(ac, av) == 84)
 		return (84);
 	champs = set_champs_info(champs, ac - 1, av);
-	memory_allocation_to_champs(&vm, champs, ac - 1);
+	memory_allocation_to_champs(vm, champs, ac - 1, av + 1);
 	while (champs != NULL) {
 		my_printf("[%d] %s | Size = %d\n", champs->program_number, champs->program_name, champs->size);
 		champs = champs->next;
 	}
-	start_cycle_game(vm, champs);
+	//start_cycle_game(vm, champs);
 	return (0);
 }
