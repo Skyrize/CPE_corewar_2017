@@ -33,7 +33,7 @@ void operate_live(champ_t *champ, pc_t *pc, byte *tab)
 
 	for (int i = pc->idx ; i != pc->indx + 4 ; i++)
 		num_champ[j++] = tab[i];
-	if (verif_in_ll(champ, name_champ, char_to_int(num_champ)) == 1)
-		my_printf(LIVE, char_to_int(num_champ), name_champ);
+	if (verif_in_ll(champ, name_champ, get_int(num_champ)) == 1)
+		my_printf(LIVE, get_int(num_champ), name_champ);
 	free(num_champ);
 }
