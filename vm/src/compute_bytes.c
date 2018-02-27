@@ -6,21 +6,7 @@
 */
 
 #include "vm.h"
-
-int reverse_int(int nb)
-{
-	union number number;
-	char tmp;
-
-	number.nbr = nb;
-	tmp = number.str[0];
-	number.str[0] = number.str[3];
-	number.str[3] = tmp;
-	tmp = number.str[1];
-	number.str[1] = number.str[2];
-	number.str[2] = tmp;
-	return (number.nbr);
-}
+#include <stdio.h>
 
 char *int_to_bin(unsigned int num)
 {
@@ -42,8 +28,10 @@ char *int_to_bin(unsigned int num)
 	return (result);
 }
 
-int *assign_value_to_parameters(char *binary_number, int *parameters)
+int *detect_parameters(int num)
 {
+	char *binary_number = int_to_bin(num);
+	int *parameters = malloc(sizeof(int) * 3);
 	int param_1 = my_getnbr(binary_number);
 	int param_2 = my_getnbr(binary_number + 3);
 	int param_3 = my_getnbr(binary_number + 6);
@@ -60,11 +48,26 @@ int *assign_value_to_parameters(char *binary_number, int *parameters)
 	return (parameters);
 }
 
-int *detect_parameters(int num)
+int get_int(byte *bytes)
 {
-	char *binary_number = int_to_bin(num);
-	int *parameters = malloc(sizeof(int) * 3);
+	char str[4];
+	int nb = 0;
 
-	assign_value_to_parameters(binary_number, parameters);
-	return (parameters);
+	str[0] = bytes[0];
+	str[1] = bytes[1];
+	str[2] = bytes[2];
+	str[3] = bytes[3];
+	nb = reverse_int(*(int *)str);
+	return (nb);
+}
+
+int get_short_int(byte *bytes)
+{
+	char str[2];
+	int nb = 0;
+
+	str[0] = bytes[0];
+	str[1] = bytes[1];
+	nb = reverse_short_int(*(short int *)str);
+	return (nb);
 }

@@ -19,6 +19,11 @@ union number {
 	char str[4];
 };
 
+union short_number {
+	int nbr;
+	char str[2];
+};
+
 typedef struct memory_s {
 	unsigned char *vm;
 	int nbr_live;
@@ -44,8 +49,10 @@ typedef struct champ_s {
 
 champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
-int get_int(int);
+int get_int(byte *);
+int get_short_int(byte *);
 int reverse_int(int);
+int reverse_short_int(int);
 void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);

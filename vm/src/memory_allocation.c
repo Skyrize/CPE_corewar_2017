@@ -7,7 +7,7 @@
 
 #include "vm.h"
 
-void fill_memory_zone(char *vm, char *path, int idx, int size)
+void fill_memory_zone(unsigned char *vm, char *path, int idx, int size)
 {
 	int fd = open(path, O_RDONLY);
 
