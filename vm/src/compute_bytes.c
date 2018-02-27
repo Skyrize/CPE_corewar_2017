@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** VM Corewar
+** CPE_corewar_2017
 ** File description:
-** NULL
+** compute_bytes.
 */
 
 #include "vm.h"

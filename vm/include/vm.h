@@ -18,6 +18,11 @@ union number {
 	char str[4];
 };
 
+typedef struct memory_s {
+	char *vm;
+	int nbr_live;
+} memory_t;
+
 typedef struct pc_s {
 	int idx;
 	int countdown;

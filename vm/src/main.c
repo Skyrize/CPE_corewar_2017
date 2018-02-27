@@ -51,6 +51,8 @@ int main(int ac, char **av)
 		my_printf("[%d] %s | Size = %d\n", champs->program_number, champs->program_name, champs->size);
 		champs = champs->next;
 	}
+	for (int i = 0; i < MEM_SIZE; i++)
+		my_printf("%d\n", vm[i]);
 	//start_cycle_game(vm, champs);
 	return (0);
 }

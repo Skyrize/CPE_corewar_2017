@@ -7,20 +7,20 @@
 
 #include "vm.h"
 
-int get_op(byte instruction)
-{
-	int i = 0;
+// int get_op(byte instruction)
+// {
+// 	int i = 0;
 
-	for (; op_tab[i].code != instruction; i++);
-	return (i);
-}
+// 	for (; op_tab[i].code != instruction; i++);
+// 	return (i);
+// }
 
-int execute_instruct(pc_t *pc, char *vm, champ_t *champ)
-{
-	int op = get_op(vm[pc->idx]);
-	byte **tab;
+// int execute_instruct(pc_t *pc, memory_t *vm, champ_t *champ)
+// {
+// 	int op = get_op(vm[pc->idx]);
+// 	byte **tab;
 
-	//op_tab[op].fptr(champ, pc, tab);
-	pc->countdown = op_tab[op].nbr_cycles;
-	return (0);
-}
+// 	//op_tab[op].fptr(champ, pc, tab);
+// 	pc->countdown = op_tab[op].nbr_cycles;
+// 	return (0);
+// }
