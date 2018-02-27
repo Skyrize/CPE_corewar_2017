@@ -10,6 +10,16 @@
 
 #include <stdbool.h>
 
+union four_bytes_union {
+	int i;
+	char str[4];
+};
+
+union two_bytes_union {
+	short i;
+	char str[2];
+};
+
 typedef char byte;
 
 /// get the file descriptor of the file
@@ -28,5 +38,15 @@ char *comma_to_spaces(char *line);
 char *tab_to_spaces(char *line);
 
 void clean_str_asm(char **line);
+
+/// revert all the bytes of an int
+/// \param nbr int
+/// \return reverted int
+int revert_int(int nbr);
+
+/// revert 2 bytes of short
+/// \param nbr short
+/// \return reverted short
+short revert_short(short nbr);
 
 #endif /* !ASM_H_ */
