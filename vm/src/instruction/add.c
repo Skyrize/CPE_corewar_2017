@@ -8,7 +8,8 @@
 #include "vm.h"
 
 
-void assign_add_value_to_register(int result_add, int num_of_registre, champ_t *champ, pc_t *pc)
+void assign_add_value_to_register(int result_add, int num_of_registre,
+champ_t *champ, pc_t *pc)
 {
 	while (champ->next != NULL) {
 		if (champ->program_number == pc->champ_owner) {
