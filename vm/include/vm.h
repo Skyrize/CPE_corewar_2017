@@ -57,3 +57,6 @@ void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
+int operate_ld(champ_t *, pc_t *, byte *);
+int operate_sub(champ_t *champ, pc_t *pc, byte *tab);
+int operate_live(champ_t *champ, pc_t *pc, byte *tab);
