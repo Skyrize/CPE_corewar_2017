@@ -70,7 +70,7 @@ bool is_line_valid(char *line)
 		if (check_unknown_line(line, words)) {
 			return (true);
 		}
-		my_printf("bad line\n");
+		my_putstr("bad line\n");
 		return (false);
 	}
 	is_valid_args(words, id, begin_idx);
