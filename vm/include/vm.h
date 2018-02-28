@@ -64,3 +64,5 @@ int operate_ld(champ_t *, pc_t *, byte *);
 int operate_sub(champ_t *, pc_t *, byte *);
 int operate_live(champ_t *, pc_t *, byte *);
 int operate_zjmp(champ_t *, pc_t *, byte *);
+void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
+int operate_lld(champ_t *, pc_t *, byte *);
