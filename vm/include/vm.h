@@ -57,3 +57,6 @@ void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
+int get_op(byte);
+void set_all_champs_pc_countdown(champ_t *, unsigned char *);
+void set_pc_countdown(pc_t *, unsigned char *);

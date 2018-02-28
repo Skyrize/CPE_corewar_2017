@@ -15,9 +15,10 @@ int find_register(champ_t *champs, pc_t *pc, char c)
 	return (champs->reg[c - 1] % 256);
 }
 
-void operate_aff(champ_t *champs, pc_t *pc, unsigned char *vm)
+int operate_aff(champ_t *champs, pc_t *pc, unsigned char *vm)
 {
 	int register_to_display = find_register(champs, pc, vm[0]);
 
 	my_printf("%c\n", register_to_display);
+	return (1);
 }
