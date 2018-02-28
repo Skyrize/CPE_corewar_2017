@@ -9,9 +9,9 @@
 
 int read_t_dir_lld(byte *tab, pc_t *pc, champ_t *champ)
 {
-	int get_num = get_short_int(tab + pc->idx + 1);
-	int new_num = get_short_int(tab + (pc->idx + (get_num));
-	int get_registre = my_getnbr(tab + pc->idx + 2);
+	int get_num = (tab + pc->idx + 1);
+	int new_num = (tab + (pc->idx + (get_num));
+	int get_registre = (tab + pc->idx + 2);
 	assign_new_value_to_new_registre(new_num, get_registre);
 	return (pc->idx + 2);
 }
