@@ -13,7 +13,9 @@ void execute_pc(memory_t *memory, pc_t *pc, champ_t *champ)
 	pc_t *tmp = pc;
 
 	while (tmp) {
-		if (tmp->countdown == 0) {
+		if (get_op(memory->vm[pc->idx]) == 84)
+			pc->idx += 1;
+		else if (tmp->countdown == 0) {
 			tmp->idx += execute_instruct(tmp, vm, champ, nbr_live);
 			set_pc_countdown(tmp, memory->vm);
 		} else
