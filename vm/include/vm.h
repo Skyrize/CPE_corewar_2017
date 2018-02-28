@@ -60,3 +60,6 @@ int *detect_parameters(int);
 int get_op(byte);
 void set_all_champs_pc_countdown(champ_t *, unsigned char *);
 void set_pc_countdown(pc_t *, unsigned char *);
+int operate_ld(champ_t *, pc_t *, byte *);
+int operate_sub(champ_t *champ, pc_t *pc, byte *tab);
+int operate_live(champ_t *champ, pc_t *pc, byte *tab);
