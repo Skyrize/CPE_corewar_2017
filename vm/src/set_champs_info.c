@@ -34,10 +34,11 @@ void get_header(champ_t *champ, int fd, int champ_number)
 	lseek(fd, COMMENT_LENGTH, SEEK_CUR);
 }
 
-void init_pc(pc_t *pc)
+void init_pc(pc_t *pc, int owner)
 {
 	pc->idx = 0;
 	pc->countdown = 0;
+	pc->champ_owner = owner;
 	pc->next = NULL;
 }
 
@@ -54,7 +55,7 @@ void add_to_list(champ_t *champs, char *pathname, int fd, int champ_number)
 	for (int i = 1; i < REG_NUMBER; i++)
 		tmp->reg[i] = 0;
 	tmp->pc = malloc(sizeof(*tmp->pc));
-	init_pc(tmp->pc);
+	init_pc(tmp->pc, tmp->program_number);
 	tmp->next = NULL;
 	champs->next = tmp;
 }
@@ -71,7 +72,7 @@ champ_t *set_champs_info(champ_t *champs, int nb_champs, char **str)
 	for (int i = 1; i < REG_NUMBER; i++)
 		champs->reg[i] = 0;
 	champs->pc = malloc(sizeof(*champs->pc));
-	init_pc(champs->pc);
+	init_pc(champs->pc, champs->program_number);
 	champs->next = NULL;
 	close(fd);
 	for (int i = 2; i < nb_champs + 1; i++) {
