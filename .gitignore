@@ -10,3 +10,5 @@ corewar
 cmake-build-debug
 CMakeLists.txt
 *.s
+compiler/include/my.h
+vm/include/my.h
