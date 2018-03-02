@@ -49,4 +49,8 @@ int revert_int(int nbr);
 /// \return reverted short
 short revert_short(short nbr);
 
+bool check_unknown_line(char **words);
+
+bool is_valid_cmd(char **words);
+
 #endif /* !ASM_H_ */

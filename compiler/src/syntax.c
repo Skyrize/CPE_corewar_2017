@@ -40,7 +40,7 @@ bool is_valid_args(char **words, int id, uint begin_idx)
 	return (true);
 }
 
-bool check_unknown_line(char *line, char **words)
+bool check_unknown_line(char **words)
 {
 	if (my_strcmp(words[0], NAME_CMD_STRING) == 0)
 		return (true);
@@ -59,6 +59,8 @@ bool is_line_valid(char *line)
 	clean_str_asm(&line);
 	if (my_strlen(line) == 0)
 		return (true);
+	my_putstr(line);
+	my_putstr("\n");
 	words = my_split(line, ' ');
 	(is_label(words)) ? (begin_idx ++) : (0);
 	if (my_array_length((void **) words) <= begin_idx)
@@ -67,9 +69,8 @@ bool is_line_valid(char *line)
 		if (my_strcmp(op_tab[i].mnemonique, words[begin_idx]) == 0)
 			id = i;
 	if (id == -1) {
-		if (check_unknown_line(line, words)) {
+		if (is_valid_cmd(words))
 			return (true);
-		}
 		my_putstr("bad line\n");
 		return (false);
 	}
