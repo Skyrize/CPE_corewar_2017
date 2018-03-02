@@ -5,71 +5,68 @@
 ** my_split.c
 */
 
-#include <stdlib.h>
+#include "my.h"
 
-int get_group_len(char *str, char sp, int pos)
+int count_words(char *str, char separator)
 {
 	int i = 0;
-	int npos = 0;
-	int len = 0;
+	int a = 0;
+	int words = 0;
 
-	for (; str[i] && pos != npos; i += 1) {
-		(str[i] == sp) ? (npos += 1) : 1;
+	while (str[i]) {
+		if ((str[i] != separator && str[i] != '\t') && a == 0) {
+			words += 1;
+			a = 1;
+		} else if (str[i] == separator || str[i] == '\t')
+			a = 0;
+		i++;
 	}
-	for (; str[i] && str[i] != sp; i += 1)
-		len += 1;
-	return (len);
+	return (words);
 }
 
-int get_group_nbr(char *str, char sp)
+char *count_letters(int *letters, char *str, char separator)
 {
 	int i = 0;
-	int ret = 1;
+	int j = 0;
+	char *word;
 
-	if (!str[0])
-		return (0);
-	for (; str[i + 1]; i += 1)
-		ret += (str[i] == sp && str[i + 1] != sp) ? 1 : 0;
-	return (ret);
+	*letters = 0;
+	while (str[i] == separator || str[i] == '\t')
+		i++;
+	while ((str[i] != separator && str[i] != '\t') && str[i] != 0) {
+		i += 1;
+		*letters += 1;
+	}
+	*letters = i;
+	word = malloc(sizeof(char) * (*letters + 1));
+	if (word == NULL)
+		return (NULL);
+	for (j; str[j] == separator || str[j] == '\t'; j++);
+	for (i = j; (str[i] != separator && str[i] != '\t') && str[i] != 0; i++)
+		word[i - j] = str[i];
+	word[i - j] = 0;
+	return (word);
 }
 
-void fill_grps(char *str, char sp, char **ret)
+char **my_split(char *str, char separator)
 {
-	int pos = 0;
+	int words = 0;
+	char *word = NULL;
+	char **word_array = NULL;
+	int letters = 0;
 	int i = 0;
-	int posi = 0;
 
-	for (; str[i]; i += 1) {
-		if (str[i] == sp && str[i + 1] != sp) {
-			ret[pos][posi] = '\0';
-			pos += 1;
-			posi = 0;
-			continue;
-		}
-		if (str[i] != sp) {
-			ret[pos][posi] = str[i];
-			posi += 1;
-		}
+	if (str == NULL)
+		return (NULL);
+	words = count_words(str, separator);
+	word_array = malloc(sizeof(char *) * (words + 1));
+	for (i = 0; i < words; i++) {
+		word = count_letters(&letters, str, separator);
+		str += letters;
+		word_array[i] = word;
 	}
-	ret[pos + 1] = NULL;
-}
-
-char **my_split(char *str, char sp)
-{
-	int grp_nbr = get_group_nbr(str, sp);
-	char **ret = malloc(sizeof(char *) * (grp_nbr + 2));
-	int i = 0;
-	int len;
-
-	for (; i < grp_nbr; i += 1) {
-		len = get_group_len(str, sp, i);
-		ret[i] = malloc(sizeof(char) * (len + 1));
-		for (int j = 0; j < (len + 1); j += 1) {
-			ret[i][j] = '\0';
-		}
-	}
-	fill_grps(str, sp, ret);
-	return (ret);
+	word_array[i] = NULL;
+	return (word_array);
 }
 
 int my_array_length(void **arr)
@@ -78,4 +75,29 @@ int my_array_length(void **arr)
 
 	for (; arr[i]; i += 1);
 	return (i);
+}
+
+char *str_array_to_str(char **words)
+{
+	int len = my_array_length((void **) words);
+	int total_len = 0;
+	char *res;
+	int pos = 0;
+
+	for (int i = 0; words[i]; i++) {
+		for (int j = 0; words[i][j]; j++)
+			total_len++;
+		total_len ++;
+	}
+	res = malloc(sizeof(char) * total_len);
+	for (int i = 0; words[i]; i++) {
+		for (int j = 0; words[i][j]; j++) {
+			res[pos] = words[i][j];
+			pos++;
+		}
+		res[pos] = ' ';
+		pos++;
+	}
+	res[pos - 1] = '\0';
+	return (res);
 }
