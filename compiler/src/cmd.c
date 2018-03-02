@@ -15,9 +15,30 @@ bool is_cmd_valid(char **words)
 	if (len < 2)
 		return (false);
 	if (words[1][0] == '"' &&
-		words[len - 1][my_strlen(words[len - 1]) - 1] == '"')
+		words[len - 1][my_strlen(words[len - 1]) - 1] == '"') {
+
 		return (true);
+	}
 	return (false);
+}
+
+char *get_cmd_str(char *line)
+{
+	int i;
+	int j;
+	char *res;
+
+	if (!is_valid_cmd(my_split(line, ' ')))
+		return (NULL);
+	for (i = 0; line[i] && line[i] != '"'; i++);
+	i++;
+	for (j = 0; line[i + j] && line[i + j] != '"'; j++);
+	res = malloc(sizeof(char) * j + 1);
+	for (j = 0; line[i + j] && line[i + j] != '"'; j++) {
+		res[j] = line[i + j];
+	}
+	res[j] = '\0';
+	return (res);
 }
 
 bool is_valid_cmd(char **words)

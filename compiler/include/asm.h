@@ -53,4 +53,9 @@ bool check_unknown_line(char **words);
 
 bool is_valid_cmd(char **words);
 
+/// return the content of .name and .comment
+/// \param line
+/// \return str
+char *get_cmd_str(char *line);
+
 #endif /* !ASM_H_ */

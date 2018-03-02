@@ -76,3 +76,28 @@ int my_array_length(void **arr)
 	for (; arr[i]; i += 1);
 	return (i);
 }
+
+char *str_array_to_str(char **words)
+{
+	int len = my_array_length((void **) words);
+	int total_len = 0;
+	char *res;
+	int pos = 0;
+
+	for (int i = 0; words[i]; i++) {
+		for (int j = 0; words[i][j]; j++)
+			total_len++;
+		total_len ++;
+	}
+	res = malloc(sizeof(char) * total_len);
+	for (int i = 0; words[i]; i++) {
+		for (int j = 0; words[i][j]; j++) {
+			res[pos] = words[i][j];
+			pos++;
+		}
+		res[pos] = ' ';
+		pos++;
+	}
+	res[pos - 1] = '\0';
+	return (res);
+}
