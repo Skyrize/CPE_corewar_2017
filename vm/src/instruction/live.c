@@ -5,7 +5,7 @@
 ** null
 */
 
-#include "my.h"
+#include "vm.h"
 
 int char_to_int(byte *num_champ)
 {
