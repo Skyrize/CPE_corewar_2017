@@ -59,8 +59,6 @@ bool is_line_valid(char *line)
 	clean_str_asm(&line);
 	if (my_strlen(line) == 0)
 		return (true);
-	my_putstr(line);
-	my_putstr("\n");
 	words = my_split(line, ' ');
 	(is_label(words)) ? (begin_idx ++) : (0);
 	if (my_array_length((void **) words) <= begin_idx)

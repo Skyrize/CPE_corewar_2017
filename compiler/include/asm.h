@@ -20,7 +20,13 @@ union two_bytes_union {
 	char str[2];
 };
 
+struct cmd_data_s{
+	char *name;
+	char *description;
+};
+
 typedef char byte;
+typedef struct cmd_data_s cmd_data;
 
 /// get the file descriptor of the file
 ///
@@ -57,5 +63,14 @@ bool is_valid_cmd(char **words);
 /// \param line
 /// \return str
 char *get_cmd_str(char *line);
+
+/// if .s -> .cor and if .other -> .other.cor
+/// \param source_filename
+/// \return file descriptor
+int create_file(char *source_filename);
+
+/// put the magic bytes
+/// \param fd file descriptor
+void put_magic_bytes(int fd);
 
 #endif /* !ASM_H_ */
