@@ -25,15 +25,16 @@ int verif_in_ll(champ_t *champ, char *name_champ, int number)
 	return (0);
 }
 
-void operate_live(champ_t *champ, pc_t *pc, byte *tab)
+int operate_live(champ_t *champ, pc_t *pc, byte *tab)
 {
 	byte *num_champ = malloc(4);
 	char *name_champ = NULL;
 	int j = 0;
 
-	for (int i = pc->idx ; i != pc->indx + 4 ; i++)
+	for (int i = pc->idx ; i != pc->idx + 4 ; i++)
 		num_champ[j++] = tab[i];
-	if (verif_in_ll(champ, name_champ, char_to_int(num_champ)) == 1)
-		my_printf(LIVE, char_to_int(num_champ), name_champ);
+	if (verif_in_ll(champ, name_champ, get_int(num_champ)) == 1)
+		my_printf(LIVE, get_int(num_champ), name_champ);
 	free(num_champ);
+	return (pc->idx + 4)
 }
