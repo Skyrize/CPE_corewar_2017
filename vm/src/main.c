@@ -47,7 +47,7 @@ int main(int ac, char **av)
 		return (84);
 	champs = set_champs_info(champs, ac - 1, av);
 	memory_allocation_to_champs(vm, champs, ac - 1, av + 1);
-	set_all_champs_pc_countdown(champs, vm);
+	//set_all_champs_pc_countdown(champs, vm);
 	// while (champs != NULL) {
 	// 	my_printf("[%d] %s | Size = %d\n", champs->program_number, champs->program_name, champs->size);
 	// 	champs = champs->next;

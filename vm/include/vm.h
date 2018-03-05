@@ -27,6 +27,7 @@ union short_number {
 typedef struct memory_s {
 	unsigned char *vm;
 	int nbr_live;
+	int last_alive;
 } memory_t;
 
 typedef struct pc_s {
@@ -58,11 +59,31 @@ char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
 int get_op(byte);
+int check_champs_live(champ_t *);
 void set_all_champs_pc_countdown(champ_t *, unsigned char *);
 void set_pc_countdown(pc_t *, unsigned char *);
+
+/*
+** instructions
+*/
 int operate_ld(champ_t *, pc_t *, byte *);
 int operate_sub(champ_t *, pc_t *, byte *);
 int operate_live(champ_t *, pc_t *, byte *);
 int operate_zjmp(champ_t *, pc_t *, byte *);
-void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
 int operate_lld(champ_t *, pc_t *, byte *);
+int operate_st(champ_t *, pc_t *, byte *);
+int operate_add(champ_t *, pc_t *, byte *);
+int operate_and(champ_t *, pc_t *, byte *);
+int operate_or(champ_t *, pc_t *, byte *);
+int operate_xor(champ_t *, pc_t *, byte *);
+int operate_ldi(champ_t *, pc_t *, byte *);
+int operate_lldi(champ_t *, pc_t *, byte *);
+int operate_sti(champ_t *, pc_t *, byte *);
+int operate_fork(champ_t *, pc_t *, byte *);
+int operate_lfork(champ_t *, pc_t *, byte *);
+int operate_aff(champ_t *, pc_t *, byte *);
+int operate_tmp(champ_t *, pc_t*, byte *);
+
+void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
+void assign_add_value_to_register(int, int, champ_t *, pc_t *);
+void add_pc(pc_t *, int, byte *);

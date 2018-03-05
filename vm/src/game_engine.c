@@ -16,7 +16,8 @@ void execute_pc(memory_t *memory, pc_t *pc, champ_t *champ)
 		if (get_op(memory->vm[pc->idx]) == 84)
 			pc->idx += 1;
 		else if (tmp->countdown == 0) {
-			tmp->idx += execute_instruct(tmp, vm, champ, nbr_live);
+			tmp->idx += execute_instruct(tmp, memory->vm,
+						champ, memory->nbr_live);
 			set_pc_countdown(tmp, memory->vm);
 		} else
 			tmp->countdown--;
@@ -45,8 +46,10 @@ void start_cycle_game(unsigned char *vm, champ_t *champs)
 	set_all_champs_pc_countdown(champs, memory->vm);
 	while (cycle_to_die > 0 || check_champs_live(champs) > 1) {
 		execute_champs_pc(memory, champs);
-		if (i-- == 0 || nbr_live >= NBR_LIVE) {
+		if (i-- == 0 || memory->nbr_live >= NBR_LIVE) {
 			cycle_to_die -= CYCLE_DELTA;
+			if (cycle_to_die <= 0)
+				break;
 			i = cycle_to_die;
 		}
 		//my_printf("%d\n", i);

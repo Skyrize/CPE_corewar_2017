@@ -19,13 +19,13 @@ int get_op(byte instruction)
 
 int execute_instruct(pc_t *pc, memory_t *vm, champ_t *champ)
 {
-	int op = get_op(vm[pc->idx]);
+	int op = get_op(vm->vm[pc->idx]);
 	int *parameters;
 	int ret = 0;
 
 	if (op == 84)
 		return (1);
-	parameters = detect_parameters(vm[pc->idx + 1]);
+	parameters = detect_parameters(vm->vm[pc->idx + 1]);
 	//ret = op_tab[op].fptr(champ, pc, vm->vm);
 	pc->countdown = op_tab[op].nbr_cycles;
 	return (ret + 1);
