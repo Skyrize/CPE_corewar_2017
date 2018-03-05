@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRCVM	=	$(wildcard vm/src/*.c)
+SRCVM	=	$(wildcard vm/src/*.c) $(wildcard vm/src/instruction/*.c)
 
 SRCASM	=	$(wildcard compiler/src/*.c)
 

@@ -54,6 +54,6 @@ int main(int ac, char **av)
 	// }
 	// for (int i = 0; i < MEM_SIZE; i++)
 	// 	my_printf("%d  ", (int)vm[i]);
-	//start_cycle_game(vm, champs);
+	start_cycle_game(vm, champs);
 	return (0);
 }
