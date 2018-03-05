@@ -26,12 +26,19 @@ int create_file(char *source_filename)
 	return (fd);
 }
 
-void put_magic_bytes(int fd)
+void put_header(int fd)
 {
 	int magic = revert_int(COREWAR_EXEC_MAGIC);
-	ssize_t written = write(fd, &magic, 4);
+	header_t header;
+	ssize_t written;
+	cmd_data *data = get_cmd_data();
 
-	if (written != 4) {
+	header.magic = magic;
+	header.prog_size = 120; //TODO CHANGE
+	my_strcpy(header.comment, data->description);
+	my_strcpy(header.prog_name, data->name);
+	written = write(fd, &header, sizeof(header));
+	if (written != sizeof(header)) {
 		my_putstr("cannot write in file\n");
 		exit(84);
 	}

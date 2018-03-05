@@ -25,8 +25,14 @@ struct cmd_data_s{
 	char *description;
 };
 
+struct tag_s{
+	char *name;
+	struct tag_s* next;
+};
+
 typedef char byte;
 typedef struct cmd_data_s cmd_data;
+typedef struct tag_s tag_t;
 
 /// get the file descriptor of the file
 ///
@@ -71,6 +77,8 @@ int create_file(char *source_filename);
 
 /// put the magic bytes
 /// \param fd file descriptor
-void put_magic_bytes(int fd);
+void put_header(int fd);
+
+cmd_data *get_cmd_data(void);
 
 #endif /* !ASM_H_ */
