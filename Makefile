@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRCVM	=	$(wildcard vm/src/*.c)
+SRCVM	=	$(wildcard vm/src/*.c) $(wildcard vm/src/instruction/*.c)
 
 SRCASM	=	$(wildcard compiler/src/*.c)
 
@@ -27,9 +27,9 @@ all:	$(NAME)
 
 $(NAME):	$(OBJVM) $(OBJASM)
 	@echo -e "\n\n  $(YELLOW)Building corewar executable$(STDCLR)\n\n"
-	gcc -o corewar $(OBJVM) $(CFLAGS) -I vm/include -L vm/lib/my -lmy
+	gcc -o vm/corewar $(OBJVM) $(CFLAGS) -I vm/include -L vm/lib/my -lmy
 	@echo -e "\n\n  $(YELLOW)Building asm executable$(STDCLR)\n\n"
-	gcc -o asm $(OBJASM) $(CFLAGS) -I compiler/include -L compiler/lib/my -lmy
+	gcc -o compiler/asm $(OBJASM) $(CFLAGS) -I compiler/include -L compiler/lib/my -lmy
 	@echo -e "\n\n  $(YELLOW)Build finished$(STDCLR)\n\n"
 
 %.o: %.c
@@ -48,8 +48,7 @@ fclean: clean
 	@echo -e "\n\n  $(YELLOW)Fcleaning directory$(STDCLR)\n\n"
 	cd vm/lib/my && $(MAKE) fclean
 	cd compiler/lib/my && $(MAKE) fclean
-	rm -rf corewar
-	rm -rf asm
+	rm -rf vm/corewar
+	rm -rf compiler/asm
 
 re: fclean all
-
