@@ -5,6 +5,7 @@
 ** null
 */
 
+/*
 int read_t_dir_ldi(byte *tab, pc_t *pc, champ_t *champ)
 {
 
@@ -27,3 +28,4 @@ void operate_ldi()
 
 	return (0);
 }
+*/
