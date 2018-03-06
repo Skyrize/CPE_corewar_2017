@@ -10,6 +10,8 @@
 
 #include <stdbool.h>
 
+typedef char byte;
+
 union four_bytes_union {
 	int i;
 	char str[4];
@@ -27,12 +29,18 @@ struct cmd_data_s{
 
 struct tag_s{
 	char *name;
+	int line;
 	struct tag_s* next;
 };
 
-typedef char byte;
+struct operation_s {
+	byte instruction_code;
+	byte coding_byte;
+};
+
 typedef struct cmd_data_s cmd_data;
 typedef struct tag_s tag_t;
+typedef struct operation_s operation_t;
 
 /// get the file descriptor of the file
 ///

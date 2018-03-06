@@ -23,7 +23,6 @@ bool is_cmd_valid(char **words)
 	return (false);
 }
 
-//TODO fix segfault
 char *get_cmd_str(char *line)
 {
 	int i;
