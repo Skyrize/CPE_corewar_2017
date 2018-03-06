@@ -61,8 +61,10 @@ int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
 int get_op(byte);
 int check_champs_live(champ_t *);
-void set_all_champs_pc_countdown(champ_t *, unsigned char *);
-void set_pc_countdown(pc_t *, unsigned char *);
+void set_all_champs_pc_countdown(champ_t *, memory_t *);
+void set_pc_countdown(pc_t *, memory_t *);
+int execute_instruct(pc_t *, memory_t *, champ_t *);
+void start_cycle_game(unsigned char *, champ_t *);
 
 /*
 ** instructions

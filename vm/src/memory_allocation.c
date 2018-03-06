@@ -13,7 +13,7 @@ void fill_memory_zone(unsigned char *vm, char *path, int idx, int size)
 
 	lseek(fd, 4 + PROG_NAME_LENGTH + 11 + COMMENT_LENGTH + 1, SEEK_SET);
 	for (int i = 0; i < size; i++)
-		read(fd, &vm[i + idx], size);
+		read(fd, &vm[i + idx], 1);
 	close(fd);
 }
 
