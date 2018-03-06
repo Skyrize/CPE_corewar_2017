@@ -9,7 +9,7 @@
 
 int find_register(champ_t *champs, pc_t *pc, char c)
 {
-	for (int i = 0; champs; champs = champs->next)
+	for (; champs; champs = champs->next)
 		if (champs->program_number == pc->champ_owner)
 			break;
 	return (champs->reg[c - 1] % 256);
@@ -17,8 +17,8 @@ int find_register(champ_t *champs, pc_t *pc, char c)
 
 int operate_aff(champ_t *champs, pc_t *pc, unsigned char *vm)
 {
-	int register_to_display = find_register(champs, pc, vm[0]);
+	int register_to_display = find_register(champs, pc, vm[pc->idx + 1]);
 
-	my_printf("%c\n", register_to_display);
+	my_printf("%d\n", register_to_display);
 	return (1);
 }
