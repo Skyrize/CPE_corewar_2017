@@ -10,7 +10,7 @@
 void assign_new_value_to_new_registre(int new_num, int num_of_registre,
 						champ_t *champ, pc_t *pc)
 {
-	while (champ->next != NULL) {
+	while (champ != NULL) {
 		if (champ->program_number == pc->champ_owner) {
 			champ->reg[num_of_registre - 1] = new_num;
 			champ->carry = true;
