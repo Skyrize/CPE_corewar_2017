@@ -33,14 +33,14 @@ struct tag_s{
 	struct tag_s* next;
 };
 
-struct operation_s {
+struct instruction_s {
 	byte instruction_code;
-	byte coding_byte;
+	int coding_byte;
 };
 
 typedef struct cmd_data_s cmd_data;
 typedef struct tag_s tag_t;
-typedef struct operation_s operation_t;
+typedef struct instruction_s instruction_t;
 
 /// get the file descriptor of the file
 ///
@@ -88,5 +88,10 @@ int create_file(char *source_filename);
 void put_header(int fd);
 
 cmd_data *get_cmd_data(void);
+
+/// Check if first word is cmd
+bool is_label(char **words);
+
+int get_param_bytecode(char **words, int param_nbr);
 
 #endif /* !ASM_H_ */
