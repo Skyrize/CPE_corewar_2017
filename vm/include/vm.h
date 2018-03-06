@@ -13,6 +13,7 @@
 
 #define LIVE "The player %d(%s)is alive."
 typedef unsigned char byte;
+#define C_CARRY champ->carry
 
 union number {
 	int nbr;

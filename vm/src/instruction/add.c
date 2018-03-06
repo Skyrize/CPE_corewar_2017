@@ -10,14 +10,22 @@
 void assign_add_value_to_register(int result_add, int num_of_registre,
 						champ_t *champ, pc_t *pc)
 {
+	int check_pn_co = 0;
+
 	while (champ->next != NULL) {
-		if (champ->program_number == pc->champ_owner) {
+		if (champ->program_number == pc->champ_owner
+		&& (T_REG >= 1 && T_REG <= 16)) {
 			champ->reg[num_of_registre] = result_add;
-			champ->carry = true;
+			check_pn_co = 1;
 			break;
 		}
 		champ = champ->next;
 	}
+	if (check_pn_co == 1 && (T_REG >= 1 && T_REG <= 16)
+	&& C_CARRY == false)
+		C_CARRY = true;
+	else if ((T_REG < 1 || T_REG > 16))
+		C_CARRY = false;
 }
 
 
