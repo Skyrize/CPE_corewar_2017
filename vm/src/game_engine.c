@@ -60,6 +60,7 @@ void start_cycle_game(unsigned char *vm, champ_t *champs)
 	// 	my_printf("%d  ", memory->vm[i]);
 	set_all_champs_pc_countdown(champs, memory);
 	while (cycle_to_die > 0) {
+		// my_printf("%d\n", i);
 		execute_champs_pc(memory, champs);
 		if (end_cycle(memory, champs, &cycle_to_die, &i) == 1)
 			return;
