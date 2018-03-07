@@ -5,7 +5,7 @@
 ** null
 */
 
-#include "my.h"
+#include "vm.h"
 
 int char_to_int(byte *num_champ)
 {
@@ -36,5 +36,5 @@ int operate_live(champ_t *champ, pc_t *pc, byte *tab)
 	if (verif_in_ll(champ, name_champ, get_int(num_champ)) == 1)
 		my_printf(LIVE, get_int(num_champ), name_champ);
 	free(num_champ);
-	return (pc->idx + 4)
+	return (4);
 }
