@@ -9,6 +9,9 @@
 #define ASM_H_
 
 #include <stdbool.h>
+#include "op.h"
+
+typedef char byte;
 
 union four_bytes_union {
 	int i;
@@ -25,8 +28,17 @@ struct cmd_data_s{
 	char *description;
 };
 
-typedef char byte;
+struct instruction_s {
+	byte instruction_code;
+	int coding_byte;
+	int nbr_args;
+	args_type_t *args_types;
+	int *args;
+	struct instruction_s *next;
+};
+
 typedef struct cmd_data_s cmd_data;
+typedef struct instruction_s instruction_t;
 
 /// get the file descriptor of the file
 ///
@@ -71,6 +83,35 @@ int create_file(char *source_filename);
 
 /// put the magic bytes
 /// \param fd file descriptor
-void put_magic_bytes(int fd);
+void put_header(int fd);
+
+cmd_data *get_cmd_data(void);
+
+/// Check if first word is cmd
+bool is_label(char **words);
+
+int get_param_bytecode(char **words, int param_nbr);
+
+char **get_words_without_label(char **words);
+
+int get_fnc_idx(char *fnc_name);
+
+/// Return a null terminated array of args_type_t (T_REG, T_DIR, T_IND)
+args_type_t *get_args_types(char **words);
+
+byte get_args_nbr(char **words);
+
+/// return adress of the adress of the first node
+instruction_t **get_instructions(void);
+
+instruction_t *add_operation_to_list(instruction_t *instruction);
+
+bool is_there_a_command(char **words);
+
+instruction_t *create_operation(char **words);
+
+void process_instruction_line(char **words);
+
+void log_double_string_array(char **str);
 
 #endif /* !ASM_H_ */

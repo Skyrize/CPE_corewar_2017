@@ -7,6 +7,7 @@
 
 #include <my.h>
 #include <asm.h>
+#include <op.h>
 
 bool is_cmd_valid(char **words)
 {
@@ -28,23 +29,42 @@ char *get_cmd_str(char *line)
 	int j;
 	char *res;
 
-	if (!is_valid_cmd(my_split(line, ' ')))
-		return (NULL);
 	for (i = 0; line[i] && line[i] != '"'; i++);
 	i++;
 	for (j = 0; line[i + j] && line[i + j] != '"'; j++);
 	res = malloc(sizeof(char) * j + 1);
-	for (j = 0; line[i + j] && line[i + j] != '"'; j++) {
+	for (j = 0; line[i + j] && line[i + j] != '"'; j++)
 		res[j] = line[i + j];
-	}
 	res[j] = '\0';
 	return (res);
 }
 
+cmd_data *get_cmd_data(void)
+{
+	static cmd_data *data = NULL;
+
+	if (data == NULL) {
+		data = malloc(sizeof(*data));
+		data->name = my_strdup("");
+		data->description = my_strdup("");
+	}
+	return (data);
+}
+
 bool is_valid_cmd(char **words)
 {
-	if (check_unknown_line(words) && is_cmd_valid(words))
+	cmd_data *data = NULL;
+
+	if (check_unknown_line(words) && is_cmd_valid(words)) {
+		data = get_cmd_data();
+		if (my_strcmp(words[0], NAME_CMD_STRING) == 0) {
+			char *r = str_array_to_str(words);
+			data->name = get_cmd_str(r);
+		} else {
+			data->description = get_cmd_str(\
+			str_array_to_str(words));
+		}
 		return (true);
-	my_putstr("bad formatting on command line\n");
+	}
 	return (false);
 }

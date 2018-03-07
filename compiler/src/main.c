@@ -53,7 +53,7 @@ int main(int ac, char **av)
 	get_fd(av[1]);
 	check_syntax();
 	int fd = create_file(av[1]);
-	put_magic_bytes(fd);
+	put_header(fd);
 	close(fd);
 	return (0);
 }
