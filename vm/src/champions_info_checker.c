@@ -15,6 +15,8 @@ int check_champs_live(champ_t *champs)
 	while (tmp) {
 		if (tmp->alive == 1)
 			i++;
+		else
+			tmp->pc = NULL;
 		tmp = tmp->next;
 	}
 	return (i);

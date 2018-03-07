@@ -25,12 +25,6 @@ union short_number {
 	char str[2];
 };
 
-typedef struct memory_s {
-	unsigned char *vm;
-	int nbr_live;
-	int last_alive;
-} memory_t;
-
 typedef struct pc_s {
 	int idx;
 	int countdown;
@@ -48,6 +42,13 @@ typedef struct champ_s {
 	pc_t *pc;
 	struct champ_s *next;
 } champ_t;
+
+typedef struct memory_s {
+	unsigned char *vm;
+	int nbr_live;
+	int last_alive;
+	struct champ_s *next;
+} memory_t;
 
 champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
