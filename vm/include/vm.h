@@ -67,6 +67,7 @@ void set_pc_countdown(pc_t *, memory_t *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
 void start_cycle_game(unsigned char *, champ_t *);
 int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc);
+void carry_champ_false(champ_t *champ, pc_t *pc);
 
 /*
 ** instructions
