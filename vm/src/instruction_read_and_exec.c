@@ -20,14 +20,12 @@ int get_op(byte instruction)
 int execute_instruct(pc_t *pc, memory_t *vm, champ_t *champ)
 {
 	int op = get_op(vm->vm[pc->idx]);
-	int *parameters;
 	int ret = 0;
 
 	if (op == 84)
 		return (1);
 	else if (op == 1)
 		vm->nbr_live += 1;
-	parameters = detect_parameters(vm->vm[pc->idx + 1]);
 	ret = op_tab[op].fptr(champ, pc, vm->vm);
 	return (ret + 1);
 }

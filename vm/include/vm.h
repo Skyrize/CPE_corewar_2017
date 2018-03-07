@@ -13,6 +13,7 @@
 
 #define LIVE "The player %d(%s)is alive."
 typedef unsigned char byte;
+#define C_CARRY champ->carry
 
 union number {
 	int nbr;
@@ -23,12 +24,6 @@ union short_number {
 	int nbr;
 	char str[2];
 };
-
-typedef struct memory_s {
-	unsigned char *vm;
-	int nbr_live;
-	int last_alive;
-} memory_t;
 
 typedef struct pc_s {
 	int idx;
@@ -48,6 +43,13 @@ typedef struct champ_s {
 	struct champ_s *next;
 } champ_t;
 
+typedef struct memory_s {
+	unsigned char *vm;
+	int nbr_live;
+	int last_alive;
+	struct champ_s *next;
+} memory_t;
+
 champ_t *set_champs_info(champ_t *, int , char **);
 char *get_str(int);
 int get_int(byte *);
@@ -64,6 +66,8 @@ void set_all_champs_pc_countdown(champ_t *, memory_t *);
 void set_pc_countdown(pc_t *, memory_t *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
 void start_cycle_game(unsigned char *, champ_t *);
+int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc);
+void carry_champ_false(champ_t *champ, pc_t *pc);
 
 /*
 ** instructions
