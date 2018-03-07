@@ -83,10 +83,5 @@ int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
 	parameters[1] == 1 ? param_1 += 1 : 0;
 	parameters[1] == 2 ? param_1 += 4 : 0;
 	parameters[1] == 4 ? param_1 += 2 : 0;
-	while (champ->next != NULL) {
-		if (champ->program_number == pc->champ_owner)
-			champ->carry = false;
-		champ = champ->next;
-	}
 	return (param_0 + param_1);
 }
