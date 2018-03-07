@@ -36,12 +36,12 @@ void execute_champs_pc(memory_t *memory, champ_t *champs)
 	}
 }
 
-int end_cycle(memory_t *memory, int *cycle_to_die, int *i)
+int end_cycle(memory_t *memory, champ_t *champs, int *cycle_to_die, int *i)
 {
 	if ((*i)-- == 0 || memory->nbr_live >= NBR_LIVE) {
 		*cycle_to_die -= CYCLE_DELTA;
 		*i = *cycle_to_die;
-		if (check_champs_live(memory) < 2)
+		if (check_champs_live(champs) < 2)
 			return (1);
 	}
 	return (0);
@@ -61,7 +61,7 @@ void start_cycle_game(unsigned char *vm, champ_t *champs)
 	set_all_champs_pc_countdown(champs, memory);
 	while (cycle_to_die > 0) {
 		execute_champs_pc(memory, champs);
-		if (end_cycle(memory, &cycle_to_die, &i) == 1)
+		if (end_cycle(memory, champs, &cycle_to_die, &i) == 1)
 			return;
 	}
 }

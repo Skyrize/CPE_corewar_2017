@@ -7,24 +7,17 @@
 
 #include "vm.h"
 
-int check_champs_live(memory_t *memory)
-{              	 
+int check_champs_live(champ_t *champs)
+{
 	unsigned int i = 0;
-	champ_t *tmp;
+	champ_t *tmp = champs;
 
-	while (memory->next) {
-		if (memory->next->alive == 1)
+	while (tmp) {
+		if (tmp->alive == 1)
 			i++;
-		else if (memory->next->next != NULL) {
-			tmp = memory->next;
-			memory->next = memory->next->next;
-			free(tmp);
-		} else {
-			tmp = memory->next;
-			memory->next = NULL;
-			free(tmp);
-		}
-		memory = memory->next;
+		else
+			tmp->pc = NULL;
+		tmp = tmp->next;
 	}
 	return (i);
 }

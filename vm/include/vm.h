@@ -61,11 +61,12 @@ char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
 int get_op(byte);
-int check_champs_live(memory_t *);
+int check_champs_live(champ_t *);
 void set_all_champs_pc_countdown(champ_t *, memory_t *);
 void set_pc_countdown(pc_t *, memory_t *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
 void start_cycle_game(unsigned char *, champ_t *);
+int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc);
 
 /*
 ** instructions
