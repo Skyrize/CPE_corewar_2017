@@ -43,11 +43,11 @@ void put_header(int fd)
 
 	clear_header(header);
 	header->magic = magic;
-	header->prog_size = 120; //TODO CHANGE
+	header->prog_size = revert_int(1); //TODO CHANGE
 	my_strcpy(header->comment, data->description);
 	my_strcpy(header->prog_name, data->name);
 	written = write(fd, header, sizeof(*header));
-	if (written != sizeof(header)) {
+	if (written != sizeof(*header)) {
 		my_putstr("cannot write in file\n");
 		exit(84);
 	}

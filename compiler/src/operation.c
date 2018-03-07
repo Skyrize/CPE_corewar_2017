@@ -42,5 +42,26 @@ instruction_t *create_operation(char **words)
 	words = get_words_without_label(words);
 	instruction->coding_byte = get_coding_byte(words);
 	instruction->instruction_code = op_tab[get_fnc_idx(words[0])].code;
+	instruction->args_types = get_args_types(words);
+	instruction->args = NULL; //TODO: fill
+	instruction->nbr_args = get_args_nbr(words);
+	instruction->next = NULL;
 	return (instruction);
+}
+
+instruction_t *add_operation_to_list(instruction_t *instruction)
+{
+	instruction_t **root_addr = get_instructions();
+	instruction_t *tmp = NULL;
+
+	if (!(*root_addr)) {
+		*root_addr = instruction;
+		my_printf("adding instruction %x\n", instruction->instruction_code);
+		return (*root_addr);
+	}
+	tmp = *root_addr;
+	for (; tmp->next; tmp = tmp->next);
+	tmp->next = instruction;
+	my_printf("adding instruction %x\n", instruction->instruction_code);
+	return (*root_addr);
 }

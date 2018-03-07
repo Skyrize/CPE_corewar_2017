@@ -73,4 +73,5 @@ bool is_line_valid(char *line)
 		return (false);
 	}
 	is_valid_args(words, id, begin_idx);
+	process_instruction_line(words);
 }

@@ -59,7 +59,6 @@ bool is_valid_cmd(char **words)
 		data = get_cmd_data();
 		if (my_strcmp(words[0], NAME_CMD_STRING) == 0) {
 			char *r = str_array_to_str(words);
-			my_printf("%s\n", r);
 			data->name = get_cmd_str(r);
 		} else {
 			data->description = get_cmd_str(\
@@ -67,6 +66,5 @@ bool is_valid_cmd(char **words)
 		}
 		return (true);
 	}
-	my_putstr("bad formatting on command line\n");
 	return (false);
 }
