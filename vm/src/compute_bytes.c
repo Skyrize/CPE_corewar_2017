@@ -84,12 +84,8 @@ int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
 	parameters[1] == 1 ? param_1 += 1 : 0;
 	parameters[1] == 2 ? param_1 += 4 : 0;
 	parameters[1] == 4 ? param_1 += 2 : 0;
-<<<<<<< HEAD
 	parameters[2] == 1 ? param_2 += 1 : 0;
 	parameters[2] == 2 ? param_2 += 4 : 0;
 	parameters[2] == 4 ? param_2 += 2 : 0;
 	return (param_0 + param_1 + param_2);
-=======
-	return (param_0 + param_1);
->>>>>>> f9ef905334825a958fc8b51a5df1677f3fa4b3fe
 }

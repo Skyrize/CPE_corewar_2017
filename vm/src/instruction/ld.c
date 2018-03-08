@@ -10,6 +10,7 @@
 void assign_new_value_to_new_registre(int new_num, int num_of_registre,
 						champ_t *champ, pc_t *pc)
 {
+	my_printf("new num = %d\num of registre = %d\n", new_num, num_of_registre);
 	while (champ != NULL) {
 		if (champ->program_number == pc->champ_owner) {
 			champ->reg[num_of_registre - 1] = new_num;
@@ -59,9 +60,12 @@ int operate_ld(champ_t *champ, pc_t *pc, byte *tab)
 		carry_champ_false(champ, pc);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
-	if (parameters[0] == T_DIR)
-		return (read_t_dir_ld(tab, pc, champ) + 2);
-	else if (parameters[0] == T_IND)
-		return (read_t_ind_ld(tab, pc, champ) + 2);
+	if (parameters[0] == T_DIR) {
+		read_t_dir_ld(tab, pc, champ);
+		return (compute_bytes_read(parameters, champ, pc) + 1);
+	} else if (parameters[0] == T_IND) {
+		read_t_ind_ld(tab, pc, champ);
+		return (compute_bytes_read(parameters, champ, pc) + 1);
+	}
 	return (0);
 }
