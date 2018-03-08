@@ -7,7 +7,7 @@
 
 SRCVM	=	$(wildcard vm/src/*.c) $(wildcard vm/src/instruction/*.c)
 
-SRCASM	=	$(wildcard compiler/src/*.c)
+SRCASM	=	$(wildcard asm/src/*.c)
 
 NAME	=	corewar
 
@@ -29,26 +29,26 @@ $(NAME):	$(OBJVM) $(OBJASM)
 	@echo -e "\n\n  $(YELLOW)Building corewar executable$(STDCLR)\n\n"
 	gcc -o vm/corewar $(OBJVM) $(CFLAGS) -I vm/include -L vm/lib/my -lmy
 	@echo -e "\n\n  $(YELLOW)Building asm executable$(STDCLR)\n\n"
-	gcc -o compiler/asm $(OBJASM) $(CFLAGS) -I compiler/include -L compiler/lib/my -lmy
+	gcc -o asm/asm $(OBJASM) $(CFLAGS) -I asm/include -L asm/lib/my -lmy
 	@echo -e "\n\n  $(YELLOW)Build finished$(STDCLR)\n\n"
 
 %.o: %.c
 	cd vm/lib/my && $(MAKE)
-	cd compiler/lib/my && $(MAKE)
-	gcc -c $^ -o $@ $(CFLAGS) -I vm/include -I compiler/include
+	cd asm/lib/my && $(MAKE)
+	gcc -c $^ -o $@ $(CFLAGS) -I vm/include -I asm/include
 
 clean:
 	@echo -e "\n\n  $(YELLOW)Cleaning directory$(STDCLR)\n\n"
 	cd vm/lib/my && $(MAKE) clean
-	cd compiler/lib/my && $(MAKE) clean
+	cd asm/lib/my && $(MAKE) clean
 	rm -rf $(OBJVM)
 	rm -rf $(OBJASM)
 
 fclean: clean
 	@echo -e "\n\n  $(YELLOW)Fcleaning directory$(STDCLR)\n\n"
 	cd vm/lib/my && $(MAKE) fclean
-	cd compiler/lib/my && $(MAKE) fclean
+	cd asm/lib/my && $(MAKE) fclean
 	rm -rf vm/corewar
-	rm -rf compiler/asm
+	rm -rf asm/asm
 
 re: fclean all
