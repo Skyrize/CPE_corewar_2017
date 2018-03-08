@@ -13,10 +13,10 @@ int assign_to_last_register_xor(int *all_value, champ_t *champ, pc_t *pc)
 		return (84);
 	while (champ) {
 		if (champ->program_number == pc->champ_owner) {
-			all_value[0], all_value[1]);
-			champ->reg[all_value[2] - 1] =
-			all_value[0] ^ all_value[1];
-			champ->carry = true;
+			//all_value[0], all_value[1]);
+			//champ->reg[all_value[2] - 1] =
+			//all_value[0] ^ all_value[1];
+			//champ->carry = true;
 		}
 		champ = champ->next;
 	}
