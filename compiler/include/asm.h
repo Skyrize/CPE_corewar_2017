@@ -32,7 +32,7 @@ struct cmd_data_s{
 
 struct instruction_s {
 	byte instruction_code;
-	int coding_byte;
+	byte coding_byte;
 	int nbr_args;
 	args_type_t *args_types;
 	int *args;
@@ -99,7 +99,7 @@ cmd_data *get_cmd_data(void);
 /// Check if first word is cmd
 bool is_label(char **words);
 
-int get_param_bytecode(char **words, int param_nbr);
+byte get_param_bytecode(char **words, int param_nbr);
 
 char **get_words_without_label(char **words);
 
@@ -131,5 +131,7 @@ int get_arg(char *str, args_type_t arg_type);
 
 /// WARNING use with pre formatted words
 int *get_operation_args(char **words, args_type_t *args_types);
+
+void write_operations(int fd);
 
 #endif /* !ASM_H_ */
