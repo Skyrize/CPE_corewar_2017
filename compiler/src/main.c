@@ -31,7 +31,7 @@ bool is_file_exists(char *filename)
 void error_handling(int ac, char **av)
 {
 	if (ac < 2) {
-		my_putstr("USAGE: ./asm file_name[.s] [-h]\n");
+		my_putstr("USAGE: ./asm file_name[.s] ....\n");
 		exit(84);
 	}
 	for (int i = 1; i < ac; i++)
@@ -40,9 +40,8 @@ void error_handling(int ac, char **av)
 			print_help();
 			exit(0);
 		} else if (!is_file_exists(av[i])) {
-			my_putstr("file ");
-			my_putstr(av[i]);
-			my_putstr(" doesn't exists.\n");
+			my_putstr("Error in function open: No such file");
+			my_putstr("or directory.\n");
 			exit(84);
 		}
 	}
@@ -53,5 +52,8 @@ int main(int ac, char **av)
 	error_handling(ac, av);
 	get_fd(av[1]);
 	check_syntax();
+	int fd = create_file(av[1]);
+	put_header(fd);
+	close(fd);
 	return (0);
 }

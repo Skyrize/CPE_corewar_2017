@@ -39,7 +39,8 @@ int operate_lld(champ_t *champ, pc_t *pc, byte *tab)
 	if (parameters[1] != 1) {
 		assign_champ_carry_false(champ, pc);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
-	} if (parameters[0] == T_DIR)
+	}
+	if (parameters[0] == T_DIR)
 		return (read_t_dir_lld(tab, pc, champ) + 2);
 	else if (parameters[0] == T_IND)
 		return (read_t_ind_lld(tab, pc, champ) + 2);
