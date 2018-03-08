@@ -24,7 +24,7 @@ champ_t *champ, pc_t *pc)
 	if (check_pn_co == 1 && (T_REG >= 1 && T_REG <= 16)
 	&& C_CARRY == false)
 		C_CARRY = true;
-	else if ((T_REG < 1 || T_REG > 16))
+	else if ((T_REG < 1 || T_REG > 16) || result_add == 0)
 		C_CARRY = false;
 }
 

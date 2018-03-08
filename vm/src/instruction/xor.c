@@ -7,6 +7,14 @@
 
 #include "vm.h"
 
+void change_carry_xor(champ_t *champ, int *all_value)
+{
+	if (all_value[0] ^ all_value[1] != 0)
+		champ->carry = true;
+	else
+		champ->carry = false;
+}
+
 int assign_to_last_register_xor(int *all_value, champ_t *champ, pc_t *pc)
 {
 	if (all_value[0] == -1 || all_value[2] < 1 || all_value[2] > 16)
@@ -16,7 +24,7 @@ int assign_to_last_register_xor(int *all_value, champ_t *champ, pc_t *pc)
 			all_value[0], all_value[1]);
 			champ->reg[all_value[2] - 1] =
 			all_value[0] ^ all_value[1];
-			champ->carry = true;
+			change_carry_xor(champ, all_value);
 		}
 		champ = champ->next;
 	}
