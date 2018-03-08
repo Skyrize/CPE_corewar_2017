@@ -14,6 +14,7 @@
 #define LIVE "The player %d(%s)is alive."
 typedef unsigned char byte;
 #define C_CARRY champ->carry
+#define IDX_ADRESS (pc->idx + (get_num)
 
 union number {
 	int nbr;
@@ -71,6 +72,8 @@ void assign_champ_carry_false(champ_t *champ, pc_t *pc);
 void assign_champ_carry_true(champ_t *champ, pc_t *pc);
 int *fill_parameters_and_instruct(int *parameters);
 int check_parameters_and_instruct(int *param, champ_t *champ, pc_t *, int);
+int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
+int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
 
 /*
 ** instructions

@@ -39,8 +39,7 @@ int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
 	if (parameters[0] == T_IND) {
 		parameters[3] = 4;
 		get_num = get_short_int(tab + ((pc->idx + 2) % MEM_SIZE));
-		new_num = get_int(tab + ((pc->idx + (get_num))
-		% MEM_SIZE));
+		new_num = get_int(tab + (IDX_ADRESS) % MEM_SIZE));
 		return (new_num);
 	}
 	return (0);
@@ -55,12 +54,12 @@ int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
 	if (parameters[1] == T_REG)
 		return (t_reg_value >= 1 && t_reg_value <= 16 ?
 		get_register_value(pc, champ, t_reg_value) : -1);
-	else if (parameters[1] == T_DIR) {
+	else if (parameters[1] == T_DIR)
 		return (get_int(tab + ((pc->idx + parameters[3]) % MEM_SIZE)));
-	}
 	if (parameters[1] == T_IND) {
-		get_num = get_short_int(tab + ((pc->idx + parameters[3]) % MEM_SIZE));
-		new_num = get_int(tab + ((pc->idx + (get_num))
+		get_num = get_short_int(tab + ((pc->idx + parameters[3])
+		% MEM_SIZE));
+		new_num = get_int(tab + (IDX_ADRESS)
 		% MEM_SIZE));
 		return (new_num);
 	}
