@@ -16,7 +16,7 @@
 // {
 
 // }
-
+/*
 int get_register_value(pc_t *pc, champ_t *champs, int register_number)
 {
 	int register_value = 0;
@@ -47,7 +47,7 @@ void operate_ldi(champ_t *champs, pc_t *pc, byte *tab)
 	int second;
 	int register_number = *(tab + pc->idx +
 			compute_bytes_read(parameter, champs, pc) - 1);
-	
+
 	if (parameters[2] != 1)
 		return (compute_bytes_read(parameters, champs, pc));
 	if (parameters[0] == T_REG)
@@ -59,4 +59,4 @@ void operate_ldi(champ_t *champs, pc_t *pc, byte *tab)
 	else
 		return (0);
 	return (0);
-}
+}*/

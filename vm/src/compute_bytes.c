@@ -36,15 +36,16 @@ int *detect_parameters(int num)
 	int param_2 = my_getnbr(binary_number + 3);
 	int param_3 = my_getnbr(binary_number + 6);
 
+	printf("DETECT PARAMETERS : %d && %d && %d\n", param_1, param_2, param_3);
 	param_1 == 1 ? parameters[0] = 1 : 0;
-	param_1 == 10 ? parameters[0] = 2 : 0;
-	param_1 == 11 ? parameters[0] = 4 : 0;
+	param_1 == 10 ? parameters[0] = 4 : 0;
+	param_1 == 11 ? parameters[0] = 2 : 0;
 	param_2 == 1 ? parameters[1] = 1 : 0;
-	param_2 == 10 ? parameters[1] = 2 : 0;
-	param_2 == 11 ? parameters[1] = 4 : 0;
+	param_2 == 10 ? parameters[1] = 4 : 0;
+	param_2 == 11 ? parameters[1] = 2 : 0;
 	param_3 == 1 ? parameters[2] = 1 : 0;
-	param_3 == 10 ? parameters[2] = 2 : 0;
-	param_3 == 11 ? parameters[2] = 4 : 0;
+	param_3 == 10 ? parameters[2] = 4 : 0;
+	param_3 == 11 ? parameters[2] = 2 : 0;
 	return (parameters);
 }
 
@@ -72,10 +73,11 @@ int get_short_int(byte *bytes)
 	return (nb);
 }
 
-int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
+int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters)
 {
 	int param_0 = 0;
 	int param_1 = 0;
+	int param_2 = 0;
 
 	parameters[0] == 1 ? param_0 += 1 : 0;
 	parameters[0] == 2 ? param_0 += 4 : 0;
@@ -83,5 +85,8 @@ int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
 	parameters[1] == 1 ? param_1 += 1 : 0;
 	parameters[1] == 2 ? param_1 += 4 : 0;
 	parameters[1] == 4 ? param_1 += 2 : 0;
-	return (param_0 + param_1);
+	parameters[2] == 1 ? param_2 += 1 : 0;
+	parameters[2] == 2 ? param_2 += 4 : 0;
+	parameters[2] == 4 ? param_2 += 2 : 0;
+	return (param_0 + param_1 + param_2);
 }

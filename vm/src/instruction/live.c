@@ -12,12 +12,12 @@ int char_to_int(byte *num_champ)
 	return (*((int *)num_champ));
 }
 
-int verif_in_ll(champ_t *champ, char *name_champ, int number)
+int verif_in_ll(champ_t *champ, char **name_champ, int number)
 {
 	while (champ->next != NULL) {
 		if (champ->program_number == number) {
 			champ->alive = 1;
-			name_champ = my_strdup(champ->program_name);
+			*name_champ = my_strdup(champ->program_name);
 			return (1);
 		}
 		champ = champ->next;
@@ -27,14 +27,10 @@ int verif_in_ll(champ_t *champ, char *name_champ, int number)
 
 int operate_live(champ_t *champ, pc_t *pc, byte *tab)
 {
-	byte *num_champ = malloc(4);
+	int num_champ = get_int(tab + ((pc->idx + 1) % MEM_SIZE));
 	char *name_champ = NULL;
-	int j = 0;
 
-	for (int i = pc->idx ; i != pc->idx + 4 ; i++)
-		num_champ[j++] = tab[i];
-	if (verif_in_ll(champ, name_champ, get_int(num_champ)) == 1)
-		my_printf(LIVE, get_int(num_champ), name_champ);
-	free(num_champ);
+	if (verif_in_ll(champ, &name_champ, (num_champ)) == 1)
+		my_printf(LIVE"\n", (num_champ), name_champ);
 	return (4);
 }

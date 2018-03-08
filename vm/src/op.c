@@ -14,7 +14,7 @@ op_t op_tab[] = {{"live", 1, {T_DIR}, 1, 10, &operate_live},
 		{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, &operate_sub},
 		{"and", 3, \
 		{T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, \
-		 6, 6, &operate_tmp},
+		 6, 6, &operate_and},
 		{"or", 3, \
 		{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, \
 		7, 6, &operate_tmp},
