@@ -34,6 +34,7 @@ void clear_header(header_t *var)
 		str[i] = 0;
 }
 
+//TODO CHANGE header->prog_size = revert_int(1);
 void put_header(int fd)
 {
 	int magic = revert_int(COREWAR_EXEC_MAGIC);
@@ -43,7 +44,7 @@ void put_header(int fd)
 
 	clear_header(header);
 	header->magic = magic;
-	header->prog_size = revert_int(1); //TODO CHANGE
+	header->prog_size = revert_int(1);
 	my_strcpy(header->comment, data->description);
 	my_strcpy(header->prog_name, data->name);
 	written = write(fd, header, sizeof(*header));

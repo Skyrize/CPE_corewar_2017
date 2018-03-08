@@ -43,7 +43,7 @@ instruction_t *create_operation(char **words)
 	instruction->coding_byte = get_coding_byte(words);
 	instruction->instruction_code = op_tab[get_fnc_idx(words[0])].code;
 	instruction->args_types = get_args_types(words);
-	instruction->args = NULL; //TODO: fill
+	instruction->args = get_operation_args(words, instruction->args_types);
 	instruction->nbr_args = get_args_nbr(words);
 	instruction->next = NULL;
 	return (instruction);
@@ -56,12 +56,10 @@ instruction_t *add_operation_to_list(instruction_t *instruction)
 
 	if (!(*root_addr)) {
 		*root_addr = instruction;
-		my_printf("adding instruction %x\n", instruction->instruction_code);
 		return (*root_addr);
 	}
 	tmp = *root_addr;
 	for (; tmp->next; tmp = tmp->next);
 	tmp->next = instruction;
-	my_printf("adding instruction %x\n", instruction->instruction_code);
 	return (*root_addr);
 }

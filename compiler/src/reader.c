@@ -33,5 +33,4 @@ void check_syntax(void)
 		free(line);
 		line = get_next_line(fd);
 	}
-	log_instruction_list();
 }
