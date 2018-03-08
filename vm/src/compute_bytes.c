@@ -15,7 +15,7 @@ char *int_to_bin(unsigned int num)
 	int i = 0;
 
 	while (mask > 0) {
-		if ((num & mask) == 0 )
+		if ((num & mask) == 0)
 			result[i] = '0';
 		else
 			result[i] = '1';
@@ -36,16 +36,15 @@ int *detect_parameters(int num)
 	int param_2 = my_getnbr(binary_number + 3);
 	int param_3 = my_getnbr(binary_number + 6);
 
-	printf("DETECT PARAMETERS : %d && %d && %d\n", param_1, param_2, param_3);
 	param_1 == 1 ? parameters[0] = 1 : 0;
-	param_1 == 10 ? parameters[0] = 4 : 0;
-	param_1 == 11 ? parameters[0] = 2 : 0;
+	param_1 == 10 ? parameters[0] = 2 : 0;
+	param_1 == 11 ? parameters[0] = 4 : 0;
 	param_2 == 1 ? parameters[1] = 1 : 0;
-	param_2 == 10 ? parameters[1] = 4 : 0;
-	param_2 == 11 ? parameters[1] = 2 : 0;
+	param_2 == 10 ? parameters[1] = 2 : 0;
+	param_2 == 11 ? parameters[1] = 4 : 0;
 	param_3 == 1 ? parameters[2] = 1 : 0;
-	param_3 == 10 ? parameters[2] = 4 : 0;
-	param_3 == 11 ? parameters[2] = 2 : 0;
+	param_3 == 10 ? parameters[2] = 2 : 0;
+	param_3 == 11 ? parameters[2] = 4 : 0;
 	return (parameters);
 }
 

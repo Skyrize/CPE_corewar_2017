@@ -53,6 +53,7 @@
 	#live %4
 
 	#----- TEST AND ------#
-	aff r2
-	and r2, %0,r3
+	ld %42, r2
+	and r2, %42, r3
+	live %42
 	aff r3

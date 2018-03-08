@@ -27,6 +27,6 @@ int operate_aff(champ_t *champs, pc_t *pc, byte *vm)
 		return (2);
 	register_to_display = find_register(champs, pc,
 	vm[((pc->idx + 2) % MEM_SIZE)]);
-	my_printf("%c\n", register_to_display);
+	my_printf("%d\n", register_to_display);
 	return (2);
 }
