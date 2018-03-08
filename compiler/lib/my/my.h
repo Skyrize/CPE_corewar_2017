@@ -102,6 +102,8 @@ char	*get_next_line(int fd);
 
 bool	is_number(char *str);
 
+char	*str_array_to_str(char **words);
+
 void	flag_c(va_list list, char *a);
 void	flag_s(va_list list, char *a);
 void	flag_d(va_list list, char *a);
