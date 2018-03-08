@@ -44,6 +44,7 @@ byte get_args_nbr(char **words)
 instruction_t **get_instructions(void)
 {
 	static instruction_t **ret = NULL;
+
 	if (ret == NULL) {
 		ret = malloc(sizeof(*ret));
 		*ret = NULL;
@@ -67,19 +68,8 @@ bool is_there_a_command(char **words)
 
 void process_instruction_line(char **words)
 {
-	log_double_string_array(words);
 	if (!is_there_a_command(words))
 		return;
-	my_putstr("ca passe\n");
 	words = get_words_without_label(words);
 	add_operation_to_list(create_operation(words));
-}
-
-void log_double_string_array(char **str)
-{
-	int i = 0;
-
-	for (; str[i + 1]; i++)
-		my_printf("\"%s\", ", str[i]);
-	my_printf("\"%s\"\n", str[i]);
 }

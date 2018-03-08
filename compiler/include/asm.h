@@ -37,8 +37,15 @@ struct instruction_s {
 	struct instruction_s *next;
 };
 
+struct label_s {
+	char *name;
+	int bytes_pos;
+	struct label_s *next;
+};
+
 typedef struct cmd_data_s cmd_data;
 typedef struct instruction_s instruction_t;
+typedef struct label_s label_t;
 
 /// get the file descriptor of the file
 ///
@@ -113,5 +120,8 @@ instruction_t *create_operation(char **words);
 void process_instruction_line(char **words);
 
 void log_double_string_array(char **str);
+
+/// add and return the value
+int counter(int to_add);
 
 #endif /* !ASM_H_ */
