@@ -14,8 +14,6 @@ args_type_t *get_args_types(char **words)
 	byte args_nbr = 0;
 	args_type_t *res = NULL;
 
-	if (!is_valid_cmd(words))
-		return (NULL);
 	args_nbr = op_tab[get_fnc_idx(words[0])].nbr_args;
 	res = malloc(sizeof(*res) * args_nbr + 1);
 	for (int i = 0; i < args_nbr; i++) {
@@ -59,7 +57,7 @@ bool is_there_a_command(char **words)
 
 	if (len < 2 || len > 6 || words[0][0] == '.')
 		return (false);
-	if (words[0][my_strlen(words[0]) - 1] == ':')
+	if (words[0][my_strlen(words[0]) - 1] == LABEL_CHAR)
 		fnc_idx = get_fnc_idx(words[1]);
 	else
 		fnc_idx = get_fnc_idx(words[0]);

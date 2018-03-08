@@ -11,6 +11,8 @@
 #include <stdbool.h>
 #include "op.h"
 
+#define ERROR_INT 42910
+
 typedef char byte;
 
 union four_bytes_union {
@@ -123,5 +125,11 @@ void log_double_string_array(char **str);
 
 /// add and return the value
 int counter(int to_add);
+
+/// warning use with pre formatted words
+int get_arg(char *str, args_type_t arg_type);
+
+/// WARNING use with pre formatted words
+int *get_operation_args(char **words, args_type_t *args_types);
 
 #endif /* !ASM_H_ */
