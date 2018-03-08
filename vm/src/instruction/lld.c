@@ -36,7 +36,7 @@ int operate_lld(champ_t *champ, pc_t *pc, byte *tab)
 	int *parameters = detect_parameters(*(tab + pc->idx + 1));
 
 	if (parameters[1] != 1)
-		return (compute_bytes_read(champ, pc, parameters) + 1);
+		return (compute_bytes_read(parameters, champ, pc) + 1);
 	if (parameters[0] == T_DIR)
 		return (read_t_dir_lld(tab, pc, champ) + 2);
 	else if (parameters[0] == T_IND)

@@ -92,3 +92,4 @@ int operate_tmp(champ_t *, pc_t*, byte *);
 void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
 void assign_add_value_to_register(int, int, champ_t *, pc_t *);
 void add_pc(pc_t *, int, byte *);
+int get_register_value(pc_t *, champ_t *, int);
