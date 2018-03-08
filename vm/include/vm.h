@@ -69,6 +69,9 @@ void start_cycle_game(unsigned char *, champ_t *);
 int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters);
 void assign_champ_carry_false(champ_t *champ, pc_t *pc);
 void assign_champ_carry_true(champ_t *champ, pc_t *pc);
+int *fill_parameters_and_instruct(int *parameters);
+int check_parameters_and_instruct(int *param, champ_t *champ, pc_t *, int);
+
 /*
 ** instructions
 */
