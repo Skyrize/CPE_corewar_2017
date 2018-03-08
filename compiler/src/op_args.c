@@ -14,8 +14,6 @@ args_type_t *get_args_types(char **words)
 	byte args_nbr = 0;
 	args_type_t *res = NULL;
 
-	if (!is_valid_cmd(words))
-		return (NULL);
 	args_nbr = op_tab[get_fnc_idx(words[0])].nbr_args;
 	res = malloc(sizeof(*res) * args_nbr + 1);
 	for (int i = 0; i < args_nbr; i++) {
@@ -44,6 +42,7 @@ byte get_args_nbr(char **words)
 instruction_t **get_instructions(void)
 {
 	static instruction_t **ret = NULL;
+
 	if (ret == NULL) {
 		ret = malloc(sizeof(*ret));
 		*ret = NULL;
@@ -58,7 +57,7 @@ bool is_there_a_command(char **words)
 
 	if (len < 2 || len > 6 || words[0][0] == '.')
 		return (false);
-	if (words[0][my_strlen(words[0]) - 1] == ':')
+	if (words[0][my_strlen(words[0]) - 1] == LABEL_CHAR)
 		fnc_idx = get_fnc_idx(words[1]);
 	else
 		fnc_idx = get_fnc_idx(words[0]);
@@ -67,19 +66,8 @@ bool is_there_a_command(char **words)
 
 void process_instruction_line(char **words)
 {
-	log_double_string_array(words);
 	if (!is_there_a_command(words))
 		return;
-	my_putstr("ca passe\n");
 	words = get_words_without_label(words);
 	add_operation_to_list(create_operation(words));
-}
-
-void log_double_string_array(char **str)
-{
-	int i = 0;
-
-	for (; str[i + 1]; i++)
-		my_printf("\"%s\", ", str[i]);
-	my_printf("\"%s\"\n", str[i]);
 }
