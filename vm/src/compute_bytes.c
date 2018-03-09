@@ -15,7 +15,7 @@ char *int_to_bin(unsigned int num)
 	int i = 0;
 
 	while (mask > 0) {
-		if ((num & mask) == 0 )
+		if ((num & mask) == 0)
 			result[i] = '0';
 		else
 			result[i] = '1';
@@ -72,7 +72,7 @@ int get_short_int(byte *bytes)
 	return (nb);
 }
 
-int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
+int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters)
 {
 	int param_0 = 0;
 	int param_1 = 0;

@@ -12,3 +12,4 @@ CMakeLists.txt
 *.s
 compiler/include/my.h
 vm/include/my.h
+mouli_ld_ldi.s

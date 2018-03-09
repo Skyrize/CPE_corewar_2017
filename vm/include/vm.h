@@ -66,9 +66,9 @@ void set_all_champs_pc_countdown(champ_t *, memory_t *);
 void set_pc_countdown(pc_t *, memory_t *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
 void start_cycle_game(unsigned char *, champ_t *);
-int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc);
-void carry_champ_false(champ_t *champ, pc_t *pc);
-
+int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters);
+void assign_champ_carry_false(champ_t *champ, pc_t *pc);
+void assign_champ_carry_true(champ_t *champ, pc_t *pc);
 /*
 ** instructions
 */

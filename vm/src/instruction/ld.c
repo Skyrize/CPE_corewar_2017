@@ -10,7 +10,6 @@
 void assign_new_value_to_new_registre(int new_num, int num_of_registre,
 						champ_t *champ, pc_t *pc)
 {
-	my_printf("new num = %d\num of registre = %d\n", new_num, num_of_registre);
 	while (champ != NULL) {
 		if (champ->program_number == pc->champ_owner) {
 			champ->reg[num_of_registre - 1] = new_num;
@@ -22,8 +21,8 @@ void assign_new_value_to_new_registre(int new_num, int num_of_registre,
 
 int read_t_dir_ld(byte *tab, pc_t *pc, champ_t *champ)
 {
-	int get_num = get_int(tab + pc->idx + 2);
-	int get_registre = *(tab + pc->idx + 6);
+	int get_num = get_int(tab + ((pc->idx + 2) % MEM_SIZE));
+	int get_registre = *(tab + ((pc->idx + 6) % MEM_SIZE));
 
 	if (get_registre < 1 && get_registre > 16)
 		return (4);
@@ -33,9 +32,10 @@ int read_t_dir_ld(byte *tab, pc_t *pc, champ_t *champ)
 
 int read_t_ind_ld(byte *tab, pc_t *pc, champ_t *champ)
 {
-	int get_num = get_short_int(tab + pc->idx + 2);
-	int new_num = get_int(tab + (pc->idx + (get_num % IDX_MOD)));
-	int get_registre = *(tab + pc->idx + 4);
+	int get_num = get_short_int(tab + ((pc->idx + 2) % MEM_SIZE));
+	int new_num = get_int(tab + ((pc->idx + (get_num % IDX_MOD))
+	% MEM_SIZE));
+	int get_registre = *(tab + ((pc->idx + 4) % MEM_SIZE));
 
 	if (get_registre < 1 && get_registre > 16)
 		return (2);
@@ -43,7 +43,7 @@ int read_t_ind_ld(byte *tab, pc_t *pc, champ_t *champ)
 	return (2);
 }
 
-void carry_champ_false(champ_t *champ, pc_t *pc)
+void assign_champ_carry_false(champ_t *champ, pc_t *pc)
 {
 	while (champ) {
 		if (champ->program_number == pc->champ_owner)
@@ -52,20 +52,30 @@ void carry_champ_false(champ_t *champ, pc_t *pc)
 	}
 }
 
+void assign_champ_carry_true(champ_t *champ, pc_t *pc)
+{
+	while (champ) {
+		if (champ->program_number == pc->champ_owner)
+			champ->carry = true;
+		champ = champ->next;
+	}
+}
+
 int operate_ld(champ_t *champ, pc_t *pc, byte *tab)
 {
-	int *parameters = detect_parameters(*(tab + pc->idx + 1));
+	int *parameters = detect_parameters(*(tab + ((pc->idx + 1)
+	% MEM_SIZE)));
 
 	if (parameters[1] != 1) {
-		carry_champ_false(champ, pc);
+		assign_champ_carry_false(champ, pc);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
 	if (parameters[0] == T_DIR) {
 		read_t_dir_ld(tab, pc, champ);
-		return (compute_bytes_read(parameters, champ, pc) + 1);
+		return (compute_bytes_read(champ, pc, parameters) + 1);
 	} else if (parameters[0] == T_IND) {
 		read_t_ind_ld(tab, pc, champ);
-		return (compute_bytes_read(parameters, champ, pc) + 1);
+		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
 	return (0);
 }
