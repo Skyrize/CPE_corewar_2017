@@ -12,11 +12,12 @@ int char_to_int(byte *num_champ)
 	return (*((int *)num_champ));
 }
 
-int verif_in_ll(champ_t *champ, char **name_champ, int number)
+int verif_in_ll(champ_t *champ, char **name_champ, int number, memory_t *memory)
 {
-	while (champ->next != NULL) {
+	while (champ != NULL) {
 		if (champ->program_number == number) {
 			champ->alive = 1;
+			memory->last_alive = number;
 			*name_champ = my_strdup(champ->program_name);
 			return (1);
 		}
@@ -25,12 +26,12 @@ int verif_in_ll(champ_t *champ, char **name_champ, int number)
 	return (0);
 }
 
-int operate_live(champ_t *champ, pc_t *pc, byte *tab)
+int operate_live(champ_t *champ, pc_t *pc, memory_t *memory)
 {
-	int num_champ = get_int(tab + ((pc->idx + 1) % MEM_SIZE));
+	int num_champ = get_int(memory->vm + ((pc->idx + 1) % MEM_SIZE));
 	char *name_champ = NULL;
 
-	if (verif_in_ll(champ, &name_champ, (num_champ)) == 1)
-		my_printf(LIVE"\n", (num_champ), name_champ);
+	if (verif_in_ll(champ, &name_champ, (num_champ), memory) == 1)
+		my_printf(LIVE, (num_champ), name_champ);
 	return (4);
 }

@@ -12,7 +12,7 @@ champ_t *champ, pc_t *pc)
 {
 	int check_pn_co = 0;
 
-	while (champ->next != NULL) {
+	while (champ != NULL) {
 		if (champ->program_number == pc->champ_owner
 		&& (T_REG >= 1 && T_REG <= 16)) {
 			champ->reg[num_of_registre] = result_add;
@@ -21,6 +21,8 @@ champ_t *champ, pc_t *pc)
 		}
 		champ = champ->next;
 	}
+	if (champ == NULL)
+		return;
 	if (check_pn_co == 1 && (T_REG >= 1 && T_REG <= 16)
 	&& C_CARRY == false)
 		C_CARRY = true;

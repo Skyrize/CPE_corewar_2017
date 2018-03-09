@@ -45,6 +45,10 @@ int *detect_parameters(int num)
 	param_3 == 1 ? parameters[2] = 1 : 0;
 	param_3 == 10 ? parameters[2] = 2 : 0;
 	param_3 == 11 ? parameters[2] = 4 : 0;
+	param_1 == 0 ? parameters[0] = 0 : 0;
+	param_2 == 0 ? parameters[1] = 0 : 0;
+	param_3 == 0 ? parameters[2] = 0 : 0;
+	free(binary_number);
 	return (parameters);
 }
 
