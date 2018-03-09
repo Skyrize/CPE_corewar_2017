@@ -19,7 +19,7 @@
 	#aff r4
 
 	#----- TEST LDI DIRECT | REGISTER -----
-	#ld %4, r3
+	#ld %4, r3xœ
 	#ldi %3, r3, r4
 	#live %42
 	#aff r4
@@ -65,7 +65,19 @@
 	#aff r3
 
 	#----- TEST XOR ------#
-	#ld %0, r2
-	#xor %56, %98, r3
+	#ld %42, r2
+	#and %42, %42, r3
 	#live %42
-	aff r3
+	#aff r3
+
+	#----- TEST ADD ------#
+	#ld %21, r1
+	#add r1, r1, r3
+	#live %42
+	#aff r3
+
+	#----- TEST SUB ------#
+	#ld %21, r1
+	#sub r1, r1, r3
+	#live %42
+	#aff r3

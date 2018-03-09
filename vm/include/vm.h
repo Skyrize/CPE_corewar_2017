@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <stdio.h>
 
 #define LIVE "The player %d(%s)is alive."
 typedef unsigned char byte;
@@ -97,6 +98,6 @@ int operate_aff(champ_t *, pc_t *, byte *);
 int operate_tmp(champ_t *, pc_t*, byte *);
 
 void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
-void assign_add_value_to_register(int, int, champ_t *, pc_t *);
+void assign_result_operation_to_register(int, int, champ_t *, pc_t *);
 void add_pc(pc_t *, int, byte *);
 int get_register_value(pc_t *, champ_t *, int);
