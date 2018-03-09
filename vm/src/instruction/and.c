@@ -7,14 +7,6 @@
 
 #include "vm.h"
 
-void change_carry_and(champ_t *champ, int *all_value)
-{
-	if (all_value[0] & all_value[1] != 0)
-		champ->carry = true;
-	else
-		champ->carry = false;
-}
-
 int assign_to_last_register(int *all_value, champ_t *champ, pc_t *pc)
 {
 	if (all_value[0] == -1 || all_value[2] < 1 || all_value[2] > 16)
@@ -23,18 +15,18 @@ int assign_to_last_register(int *all_value, champ_t *champ, pc_t *pc)
 		if (champ->program_number == pc->champ_owner) {
 			champ->reg[all_value[2] - 1] =
 			all_value[0] & all_value[1];
-			change_carry_and(champ, all_value);
+			champ->carry = true;
 		}
 		champ = champ->next;
 	}
 	return (0);
 }
 
-int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
-{
-	int t_reg_value = *(tab + ((pc->idx + 2) % MEM_SIZE));
-	int get_num = 0;
-	int new_num = 0;
+// int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
+// {
+// 	int t_reg_value = *(tab + ((pc->idx + 2) % MEM_SIZE));
+// 	int get_num = 0;
+// 	int new_num = 0;
 
 	if (parameters[0] == T_REG) {
 		parameters[3] = 3;
@@ -53,11 +45,11 @@ int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
 	return (0);
 }
 
-int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
-{
-	int t_reg_value = *(tab + ((pc->idx + parameters[3]) % MEM_SIZE));
-	int get_num = 0;
-	int new_num = 0;
+// int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ)
+// {
+// 	int t_reg_value = *(tab + ((pc->idx + parameters[3]) % MEM_SIZE));
+// 	int get_num = 0;
+// 	int new_num = 0;
 
 	if (parameters[1] == T_REG)
 		return (t_reg_value >= 1 && t_reg_value <= 16 ?

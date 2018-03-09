@@ -11,7 +11,7 @@ void add_pc(pc_t *pc, int fork_value, byte *tab)
 {
 	pc_t *tmp;
 
-	tmp->idx = pc->idx + fork_value % IDX_MOD;
+	tmp->idx = (pc->idx + fork_value % IDX_MOD) % MEM_SIZE;
 	tmp->champ_owner = pc->champ_owner;
 	tmp->next = NULL;
 	pc->next = tmp;
