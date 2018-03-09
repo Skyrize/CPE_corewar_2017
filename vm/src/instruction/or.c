@@ -9,7 +9,7 @@
 
 void change_carry_or(champ_t *champ, int *all_value)
 {
-	if (all_value[0] | all_value[1] != 0)
+	if ((all_value[0] | all_value[1]) != 0)
 		champ->carry = true;
 	else
 		champ->carry = false;
