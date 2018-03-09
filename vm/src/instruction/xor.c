@@ -9,7 +9,7 @@
 
 void change_carry_xor(champ_t *champ, int *all_value)
 {
-	if (all_value[0] ^ all_value[1] != 0)
+	if ((all_value[0] ^ all_value[1]) != 0)
 		champ->carry = true;
 	else
 		champ->carry = false;
@@ -21,7 +21,6 @@ int assign_to_last_register_xor(int *all_value, champ_t *champ, pc_t *pc)
 		return (84);
 	while (champ) {
 		if (champ->program_number == pc->champ_owner) {
-			all_value[0], all_value[1]);
 			champ->reg[all_value[2] - 1] =
 			all_value[0] ^ all_value[1];
 			change_carry_xor(champ, all_value);
