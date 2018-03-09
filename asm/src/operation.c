@@ -24,7 +24,7 @@ int get_fnc_idx(char *fnc_name)
 	return (-1);
 }
 
-int get_coding_byte(char **words)
+byte get_coding_byte(char **words)
 {
 	int command_idx = 0;
 
@@ -43,8 +43,8 @@ instruction_t *create_operation(char **words)
 	instruction->coding_byte = get_coding_byte(words);
 	instruction->instruction_code = op_tab[get_fnc_idx(words[0])].code;
 	instruction->args_types = get_args_types(words);
-	instruction->args = get_operation_args(words, instruction->args_types);
 	instruction->nbr_args = get_args_nbr(words);
+	instruction->args = get_operation_args(words, instruction->args_types);
 	instruction->next = NULL;
 	return (instruction);
 }

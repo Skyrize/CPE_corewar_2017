@@ -53,7 +53,19 @@
 	#live %4
 
 	#----- TEST AND ------#
-	ld %42, r2
-	and r2, %42, r3
-	live %42
+	#ld %42, r2
+	#and r2, %42, r3
+	#live %42
+	#aff r3
+
+	#----- TEST OR ------#
+	#ld %0, r2
+	#or %42, r2, r3
+	#live %42
+	#aff r3
+
+	#----- TEST XOR ------#
+	#ld %0, r2
+	#xor %56, %98, r3
+	#live %42
 	aff r3

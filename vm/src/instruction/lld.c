@@ -10,7 +10,7 @@
 int read_t_dir_lld(byte *tab, pc_t *pc, champ_t *champ)
 {
 	int get_num = get_int(tab + ((pc->idx + 2) % MEM_SIZE));
-	int new_num = get_int(tab + ((pc->idx + (get_num)) % MEM_SIZE));
+	int new_num = get_int(tab + (IDX_ADRESS) % MEM_SIZE));
 	int get_registre = *(tab + ((pc->idx + 2) % MEM_SIZE));
 
 	if (get_registre < 1 && get_registre > 16)
@@ -22,7 +22,7 @@ int read_t_dir_lld(byte *tab, pc_t *pc, champ_t *champ)
 int read_t_ind_lld(byte *tab, pc_t *pc, champ_t *champ)
 {
 	int get_num = get_short_int(tab + ((pc->idx + 2) % MEM_SIZE));
-	int new_num = get_int(tab + (pc->idx + (get_num) % MEM_SIZE));
+	int new_num = get_int(tab + IDX_ADRESS % MEM_SIZE));
 
 	int get_registre = *(tab + ((pc->idx + 4) % MEM_SIZE));
 

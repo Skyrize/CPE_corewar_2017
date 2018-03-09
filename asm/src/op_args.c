@@ -32,8 +32,6 @@ byte get_args_nbr(char **words)
 {
 	byte args_nbr = 0;
 
-	if (!is_valid_cmd(words))
-		return -1;
 	words = get_words_without_label(words);
 	args_nbr = op_tab[get_fnc_idx(words[0])].nbr_args;
 	return (args_nbr);

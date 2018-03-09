@@ -17,10 +17,10 @@ op_t op_tab[] = {{"live", 1, {T_DIR}, 1, 10, &operate_live},
 		 6, 6, &operate_tmp},
 		{"or", 3, \
 		{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, \
-		7, 6, &operate_tmp},
+		7, 6, &operate_or},
 		{"xor", 3, \
 		{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, \
-		8, 6, &operate_tmp},
+		8, 6, &operate_xor},
 		{"zjmp", 1, {T_DIR}, 9, 20, &operate_zjmp},
 		{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, \
 		10, 25, &operate_tmp},

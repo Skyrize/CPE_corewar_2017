@@ -54,6 +54,7 @@ int main(int ac, char **av)
 	check_syntax();
 	int fd = create_file(av[1]);
 	put_header(fd);
+	write_operations(fd);
 	close(fd);
 	return (0);
 }
