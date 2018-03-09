@@ -10,12 +10,12 @@
 #include <stdlib.h>
 #include <my.h>
 
-int get_param_bytecode(char **words, int param_nbr)
+byte get_param_bytecode(char **words, int param_nbr)
 {
-	int reg[3] = {0x40, 0x10, 0x4};
-	int dir[3] = {0x80, 0x20, 0x8};
-	int ind[3] = {0xC0, 0x30, 0xC};
-	int bin = 0;
+	byte reg[3] = {0x40, 0x10, 0x4};
+	byte dir[3] = {0x80, 0x20, 0x8};
+	byte ind[3] = {0xC0, 0x30, 0xC};
+	byte bin = 0;
 
 	for (int i = 0; i < param_nbr; ++i) {
 		if (words[i + 1][0] == 'r')
@@ -61,7 +61,7 @@ int get_arg(char *str, args_type_t arg_type)
 int *get_operation_args(char **words, args_type_t *args_types)
 {
 	byte args_nbr = op_tab[get_fnc_idx(words[0])].nbr_args;
-	int *res = malloc(sizeof(*res) * args_nbr + 1);
+	int *res = malloc(sizeof(*res) * (args_nbr + 1));
 	int length = my_array_length((void **) words);
 
 	if (length < args_nbr + 1) {
