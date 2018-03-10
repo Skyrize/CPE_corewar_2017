@@ -50,7 +50,6 @@ typedef struct memory_s {
 	unsigned char *vm;
 	int nbr_live;
 	int last_alive;
-	struct champ_s *next;
 } memory_t;
 
 champ_t *set_champs_info(champ_t *, int , char **);
@@ -101,3 +100,4 @@ int operate_tmp(champ_t *, pc_t*, byte *);
 void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
 void assign_result_operation_to_register(int, int, champ_t *, pc_t *);
 int get_register_value(pc_t *, champ_t *, int);
+void corewar_free(memory_t *, champ_t *);
