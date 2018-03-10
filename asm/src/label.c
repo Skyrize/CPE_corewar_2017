@@ -67,6 +67,6 @@ void scan_line_for_labels(char **words)
 	label_t *label = malloc(sizeof(*label));
 	label->name = my_strdup(words[pos]);
 	label->name[my_strlen(label->name) - 1] = '\0';
-	label->bytes_pos = counter(0);
+	label->bytes_pos = counter_b(0);
 	add_label(label);
 }

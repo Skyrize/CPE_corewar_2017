@@ -17,13 +17,14 @@ byte get_param_bytecode(char **words, int param_nbr)
 	byte ind[3] = {0xC0, 0x30, 0xC};
 	byte bin = 0;
 
-	for (int i = 0; i < param_nbr; ++i) {
-		if (words[i + 1][0] == 'r')
+	for (int i = 0; i < param_nbr; i++) {
+		if (words[i + 1][0] == 'r') {
 			bin += reg[i];
-		else if (words[i + 1][0] == DIRECT_CHAR)
+		} else if (words[i + 1][0] == DIRECT_CHAR) {
 			bin += dir[i];
-		else
+		} else {
 			bin += ind[i];
+		}
 	}
 	return (bin);
 }

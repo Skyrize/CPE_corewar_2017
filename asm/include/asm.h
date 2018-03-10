@@ -126,6 +126,8 @@ void log_double_string_array(char **str);
 /// add and return the value
 int counter(int to_add);
 
+int counter_b(int to_add);
+
 /// warning use with pre formatted words
 int get_arg(char *str, args_type_t arg_type);
 
@@ -133,5 +135,8 @@ int get_arg(char *str, args_type_t arg_type);
 int *get_operation_args(char **words, args_type_t *args_types);
 
 void write_operations(int fd);
+
+/// Must be at the end of editing
+void write_size(int fd);
 
 #endif /* !ASM_H_ */
