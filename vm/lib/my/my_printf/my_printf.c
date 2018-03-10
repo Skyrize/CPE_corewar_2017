@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "../../../include/my.h"
+#include "../my.h"
 
 int scan_spec(va_list list, char *str, spec_t *spec)
 {

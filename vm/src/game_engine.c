@@ -61,17 +61,22 @@ void end_game(memory_t *memory, champ_t *champs)
 	corewar_free(memory, champs);
 }
 
-void start_cycle_game(unsigned char *vm, champ_t *champs)
+void start_cycle_game(unsigned char *vm, champ_t *champs, int dump_cycle)
 {
 	int cycle_to_die = CYCLE_TO_DIE;
+	unsigned int nbr_cycle = 0;
 	unsigned int i = cycle_to_die;
 	memory_t *memory = malloc(sizeof(*memory));
 
 	memory->vm = vm;
 	memory->nbr_live = 0;
+	memory->dump_cycle = dump_cycle;
 	set_all_champs_pc_countdown(champs, memory);
 	while (cycle_to_die > 0) {
 		execute_champs_pc(memory, champs);
+		nbr_cycle += 1;
+		if (nbr_cycle == memory->dump_cycle)
+			hex_dump(memory->vm);
 		if (end_cycle(memory, champs, &cycle_to_die, &i) == 1)
 			break;
 	}

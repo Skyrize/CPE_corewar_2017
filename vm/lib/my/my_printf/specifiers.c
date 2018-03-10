@@ -6,7 +6,7 @@
 */
 
 #include <stdarg.h>
-#include "../../../include/my.h"
+#include "../my.h"
 
 int spec_zero(va_list list, int nbr_zero)
 {

@@ -5,7 +5,7 @@
 ** database for printf
 */
 
-#include "../../../include/my.h"
+#include "../my.h"
 
 void my_put_ampersand(va_list list)
 {

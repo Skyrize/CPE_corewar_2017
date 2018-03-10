@@ -5,7 +5,7 @@
 ** database for printf
 */
 
-#include "../../../include/my.h"
+#include "../my.h"
 
 void func_init_next(tab_t *print)
 {

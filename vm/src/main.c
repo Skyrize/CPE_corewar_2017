@@ -36,18 +36,26 @@ int error_args_handling(int size, char **str)
 	return (0);
 }
 
+void check_args(char **str, int *dump_cycle)
+{
+	if (my_strcmp(str[1], "-dump") == 0)
+		*dump_cycle = my_getnbr(str[2]);
+}
+
 int main(int ac, char **av)
 {
 	champ_t *champs = NULL;
 	unsigned char vm[MEM_SIZE] = {0};
+	int dump_cycle = -1;
 
 	if (check_help(ac, av) == 1)
 		return (0);
 	if (error_args_handling(ac, av) == 84)
 		return (84);
+	check_args(av, &dump_cycle);
 	champs = set_champs_info(champs, ac - 1, av);
 	if (memory_allocation_to_champs(vm, champs, ac - 1, av + 1) == 84)
 		return (84);
-	start_cycle_game(vm, champs);
+	start_cycle_game(vm, champs, dump_cycle);
 	return (0);
 }
