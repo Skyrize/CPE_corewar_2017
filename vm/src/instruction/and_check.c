@@ -16,7 +16,6 @@ int check_parameters(int *parameters)
 	return (84);
 }
 
-//VERIF : que lucas à pas mis 4 param possible pour le int* parameters
 int *fill_parameters_and_instruct(int *parameters)
 {
 	int *param = malloc(sizeof(int) * 5);

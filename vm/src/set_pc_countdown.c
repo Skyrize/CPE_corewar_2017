@@ -7,9 +7,9 @@
 
 #include "vm.h"
 
-void set_pc_countdown(pc_t *pc, memory_t *vm)
+void set_pc_countdown(pc_t *pc, byte *vm)
 {
-	int tab_idx = get_op(vm->vm[pc->idx]);
+	int tab_idx = get_op(vm[pc->idx]);
 
 	if (tab_idx == 84) {
 		pc->countdown = 0;
@@ -21,7 +21,7 @@ void set_pc_countdown(pc_t *pc, memory_t *vm)
 void set_all_champs_pc_countdown(champ_t *champs, memory_t *vm)
 {
 	while (champs) {
-		set_pc_countdown(champs->pc, vm);
+		set_pc_countdown(champs->pc, vm->vm);
 		champs = champs->next;
 	}
 }

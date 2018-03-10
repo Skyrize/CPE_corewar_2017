@@ -7,6 +7,14 @@
 
 #include "vm.h"
 
+void change_carry_or(champ_t *champ, int *all_value)
+{
+	if ((all_value[0] | all_value[1]) != 0)
+		champ->carry = true;
+	else
+		champ->carry = false;
+}
+
 int assign_to_last_register_or(int *all_value, champ_t *champ, pc_t *pc)
 {
 	if (all_value[0] == -1 || all_value[2] < 1 || all_value[2] > 16)
@@ -15,7 +23,7 @@ int assign_to_last_register_or(int *all_value, champ_t *champ, pc_t *pc)
 		if (champ->program_number == pc->champ_owner) {
 			champ->reg[all_value[2] - 1] =
 			all_value[0] | all_value[1];
-			champ->carry = true;
+			change_carry_or(champ, all_value);
 		}
 		champ = champ->next;
 	}
@@ -28,6 +36,7 @@ int operate_or(champ_t *champ, pc_t *pc, byte *tab)
 	+ ((pc->idx + 1) % MEM_SIZE)));
 	int *final_parameters = fill_parameters_and_instruct(parameters);
 	int *all_value = malloc(sizeof(int) + 3);
+
 	if (check_parameters_and_instruct(parameters, champ, pc, 0) == 1)
 		return (1);
 	all_value[0] = parameters_zero(final_parameters, tab, pc, champ);
