@@ -36,6 +36,7 @@ int operate_xor(champ_t *champ, pc_t *pc, byte *tab)
 	+ ((pc->idx + 1) % MEM_SIZE)));
 	int *final_parameters = fill_parameters_and_instruct(parameters);
 	int *all_value = malloc(sizeof(int) + 3);
+
 	if (check_parameters_and_instruct(parameters, champ, pc, 0) == 1)
 		return (1);
 	all_value[0] = parameters_zero(final_parameters, tab, pc, champ);

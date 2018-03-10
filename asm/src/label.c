@@ -39,8 +39,7 @@ int is_label_present(char **words)
 	int len = my_array_length((void **)words);
 
 	for (i = 0; i < len; i++) {
-		if (words[i][my_strlen(words[i]) - 1] == LABEL_CHAR &&
-			is_label_chars(words[i])) {
+		if (words[i][my_strlen(words[i]) - 1] == LABEL_CHAR) {
 			return (i);
 		}
 	}
@@ -52,6 +51,12 @@ void add_label(label_t *label)
 	label_t **act_label = get_label_list();
 	label_t *tmp = *act_label;
 
+	if (!tmp) {
+		*act_label = label;
+		my_printf("Label \"%s\" added on %d bytes\n", \
+	label->name, label->bytes_pos);
+		return;
+	}
 	for (; tmp->next; tmp = tmp->next);
 	tmp->next = label;
 	my_printf("Label \"%s\" added on %d bytes\n", \
@@ -67,6 +72,8 @@ void scan_line_for_labels(char **words)
 	label_t *label = malloc(sizeof(*label));
 	label->name = my_strdup(words[pos]);
 	label->name[my_strlen(label->name) - 1] = '\0';
-	label->bytes_pos = counter(0);
+	label->bytes_pos = counter_b(0);
+	label->next = NULL;
+	my_printf("label found: %s\n", label->name);
 	add_label(label);
 }

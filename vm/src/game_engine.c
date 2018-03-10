@@ -17,7 +17,7 @@ void execute_pc(memory_t *memory, pc_t *pc, champ_t *champ)
 			tmp->idx += 1;
 		else if (tmp->countdown == 0) {
 			tmp->idx += execute_instruct(tmp, memory, champ);
-			set_pc_countdown(tmp, memory);
+			set_pc_countdown(tmp, memory->vm);
 		} else
 			tmp->countdown -= 1;
 		if (tmp->idx > MEM_SIZE - 1)
@@ -38,7 +38,6 @@ void execute_champs_pc(memory_t *memory, champ_t *champs)
 
 int end_cycle(memory_t *memory, champ_t *champs, int *cycle_to_die, int *i)
 {
-	// my_printf("nbr live = %d\ni = %d\n", memory->nbr_live, *i);
 	if ((*i)-- == 0 || memory->nbr_live >= NBR_LIVE) {
 		*cycle_to_die -= CYCLE_DELTA;
 		*i = *cycle_to_die;
@@ -51,27 +50,33 @@ int end_cycle(memory_t *memory, champ_t *champs, int *cycle_to_die, int *i)
 
 void end_game(memory_t *memory, champ_t *champs)
 {
+	champ_t *tmp = champs;
+
 	if (memory->last_alive == 0)
 		return;
-	while (champs && champs->program_number != memory->last_alive)
-		champs = champs->next;
-	if (champs == NULL)
-		return;
-	my_printf(WIN, champs->program_number, champs->program_name);
+	while (tmp && tmp->program_number != memory->last_alive)
+		tmp = tmp->next;
+	if (tmp != NULL)
+		my_printf(WIN, tmp->program_number, tmp->program_name);
+	corewar_free(memory, champs);
 }
 
-void start_cycle_game(unsigned char *vm, champ_t *champs)
+void start_cycle_game(unsigned char *vm, champ_t *champs, int dump_cycle)
 {
 	int cycle_to_die = CYCLE_TO_DIE;
+	unsigned int nbr_cycle = 0;
 	unsigned int i = cycle_to_die;
 	memory_t *memory = malloc(sizeof(*memory));
 
 	memory->vm = vm;
 	memory->nbr_live = 0;
-	memory->next = champs;
+	memory->dump_cycle = dump_cycle;
 	set_all_champs_pc_countdown(champs, memory);
 	while (cycle_to_die > 0) {
 		execute_champs_pc(memory, champs);
+		nbr_cycle += 1;
+		if (nbr_cycle == memory->dump_cycle)
+			hex_dump(memory->vm);
 		if (end_cycle(memory, champs, &cycle_to_die, &i) == 1)
 			break;
 	}

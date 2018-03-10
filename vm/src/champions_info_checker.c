@@ -7,16 +7,30 @@
 
 #include "vm.h"
 
+void free_pc(pc_t *pc)
+{
+	pc_t *tmp;
+
+	while (pc) {
+		tmp = pc;
+		pc = pc->next;
+		free(tmp);
+	}
+}
+
 int check_champs_live(champ_t *champs)
 {
 	unsigned int i = 0;
 	champ_t *tmp = champs;
 
 	while (tmp) {
-		if (tmp->alive == 1)
+		if (tmp->alive == 1) {
+			tmp->alive = 0;
 			i++;
-		else
+		} else {
+			free_pc(tmp->pc);
 			tmp->pc = NULL;
+		}
 		tmp = tmp->next;
 	}
 	return (i);
