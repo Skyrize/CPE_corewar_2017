@@ -45,8 +45,8 @@ clean:
 	$(RM) $(OBJTEST)
 	$(RM) ../asm/src/*.gcda
 	$(RM) ../asm/src/*.gcno
-	$(RM) ./*.gcda
-	$(RM) ./*.gcno
+	$(RM) ./src/*.gcda
+	$(RM) ./src/*.gcno
 
 fclean: clean
 	$(RM) $(NAMETEST)
