@@ -24,6 +24,10 @@ STDCLR	=	\033[0m
 
 all:	$(NAME)
 
+tests_run:
+	make -C tests/
+	tests/unit-tests
+
 
 $(NAME):	$(OBJVM) $(OBJASM)
 	@echo -e "\n\n  $(YELLOW)Building corewar executable$(STDCLR)\n\n"
@@ -43,6 +47,7 @@ clean:
 	cd asm/lib/my && $(MAKE) clean
 	rm -rf $(OBJVM)
 	rm -rf $(OBJASM)
+	make clean -C tests/
 
 fclean: clean
 	@echo -e "\n\n  $(YELLOW)Fcleaning directory$(STDCLR)\n\n"
@@ -50,5 +55,6 @@ fclean: clean
 	cd asm/lib/my && $(MAKE) fclean
 	rm -rf vm/corewar
 	rm -rf asm/asm
+	make fclean -C tests/
 
 re: fclean all
