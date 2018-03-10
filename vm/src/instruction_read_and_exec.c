@@ -24,8 +24,11 @@ int execute_instruct(pc_t *pc, memory_t *vm, champ_t *champ)
 
 	if (op == 84)
 		return (1);
-	else if (op == 1)
+	else if (op == 0)
 		vm->nbr_live += 1;
-	ret = op_tab[op].fptr(champ, pc, vm->vm);
+	if (op == 0)
+		ret = op_tab[0].fptr(champ, pc, vm);
+	else
+		ret = op_tab[op].fptr(champ, pc, vm->vm);
 	return (ret + 1);
 }

@@ -7,56 +7,60 @@
 
 #include "vm.h"
 
-// int read_t_dir_ldi(byte *tab, pc_t *pc, champ_t *champs)
-// {
-
-// }
-
-// int read_t_ind_ldi(byte *tab, pc_t *pc, champ_t *champs)
-// {
-
-// }
-
-int get_register_value(pc_t *pc, champ_t *champs, int register_number)
+int compute_bytes_read_ldi(int *params)
 {
-	int register_value = 0;
+	int param_0 = 0;
+	int param_1 = 0;
+	int param_2 = 0;
 
-	while (champs) {
-		if (champs->program_number == pc->champ_owner) {
-			register_value = champs->reg[register_number - 1];
-			break;
-		}
-		champs = champs->next;
-	}
-	return (register_value);
+	params[0] == 1 ? param_0 += 1 : 0;
+	params[0] == 2 ? param_0 += 2 : 0;
+	params[0] == 4 ? param_0 += 2 : 0;
+	params[1] == 1 ? param_1 += 1 : 0;
+	params[1] == 2 ? param_1 += 2 : 0;
+	params[1] == 4 ? param_1 += 2 : 0;
+	params[2] == 1 ? param_2 += 1 : 0;
+	params[2] == 2 ? param_2 += 2 : 0;
+	params[2] == 4 ? param_2 += 2 : 0;
+	return (param_0 + param_1 + param_2);
 }
 
-int parameter(byte *tab, int param, pc_t *pc, champ_t *champs)
+int compute_parameter_ldi(int param)
 {
-	int res = 0;
+	if (param == 1)
+		return (1);
+	return (2);
+}
+
+int parameter_ldi(byte *tab, int param, pc_t *pc, champ_t *champs)
+{
+	int get_num = get_short_int(tab + ((pc->idx + 2) % MEM_SIZE));
+	int new_num = get_int(tab + ((pc->idx + (get_num % IDX_MOD))
+								% MEM_SIZE));
 
 	if (param == 1)
-		return(get_register_value(pc, champs, *(tab + pc->idx + 2)));
-	return(get_short_int(tab + pc->idx + 2));
+		return (get_register_value(pc, champs, \
+					*(tab + (pc->idx + 2) % MEM_SIZE)));
+	if (param == 4)
+		return (new_num);
+	return (get_num);
 }
 
-void operate_ldi(champ_t *champs, pc_t *pc, byte *tab)
+int operate_ldi(champ_t *champs, pc_t *pc, byte *tab)
 {
-	int *parameters = detect_parameters(*(tab + pc->idx + 1));
-	int first = parameter(tab, parameters[0], pc, champs);
-	int second;
-	int register_number = *(tab + pc->idx +
-			compute_bytes_read(parameter, champs, pc) - 1);
-	
-	if (parameters[2] != 1)
-		return (compute_bytes_read(parameters, champs, pc));
-	if (parameters[0] == T_REG)
-		second = parameter(tab + 1, parameters[1], pc, champs);
-	else
-		second = parameter(tab + 2, parameters[1], pc, champs);
-	if (parameters[0] != T_IND)
-		return (0);
-	else
-		return (0);
-	return (0);
+	int *params = detect_parameters(*(tab + (pc->idx + 1) % MEM_SIZE));
+	int first = parameter_ldi(tab, params[0], pc, champs);
+	int second = parameter_ldi(tab +
+		compute_parameter_ldi(params[0]), params[1], pc, champs);
+	int reg = *(tab + (pc->idx + compute_bytes_read_ldi(params) + 1)
+		% MEM_SIZE);
+	int res = first + second;
+
+	if (params[2] != T_REG || reg < 1 || reg > 16) {
+		free(params);
+		return (compute_bytes_read_ldi(params) + 1);
+	}
+	assign_new_value_to_new_registre(get_int(tab + pc->idx + res)
+						% MEM_SIZE, reg, champs, pc);
+	return (compute_bytes_read_ldi(params) + 1);
 }

@@ -11,6 +11,17 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+//TODO remove
+void log_instruction_list()
+{
+	instruction_t **root = get_instructions();
+	instruction_t *tmp = *root;
+
+	for (; tmp; tmp = tmp->next) {
+		my_printf("%x\n", tmp->instruction_code);
+	}
+}
+
 void check_syntax(void)
 {
 	int fd = get_fd(NULL);

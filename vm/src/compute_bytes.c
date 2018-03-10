@@ -15,7 +15,7 @@ char *int_to_bin(unsigned int num)
 	int i = 0;
 
 	while (mask > 0) {
-		if ((num & mask) == 0 )
+		if ((num & mask) == 0)
 			result[i] = '0';
 		else
 			result[i] = '1';
@@ -45,6 +45,10 @@ int *detect_parameters(int num)
 	param_3 == 1 ? parameters[2] = 1 : 0;
 	param_3 == 10 ? parameters[2] = 2 : 0;
 	param_3 == 11 ? parameters[2] = 4 : 0;
+	param_1 == 0 ? parameters[0] = 0 : 0;
+	param_2 == 0 ? parameters[1] = 0 : 0;
+	param_3 == 0 ? parameters[2] = 0 : 0;
+	free(binary_number);
 	return (parameters);
 }
 
@@ -72,10 +76,11 @@ int get_short_int(byte *bytes)
 	return (nb);
 }
 
-int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
+int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters)
 {
 	int param_0 = 0;
 	int param_1 = 0;
+	int param_2 = 0;
 
 	parameters[0] == 1 ? param_0 += 1 : 0;
 	parameters[0] == 2 ? param_0 += 4 : 0;
@@ -83,5 +88,8 @@ int compute_bytes_read(int *parameters, champ_t *champ, pc_t *pc)
 	parameters[1] == 1 ? param_1 += 1 : 0;
 	parameters[1] == 2 ? param_1 += 4 : 0;
 	parameters[1] == 4 ? param_1 += 2 : 0;
-	return (param_0 + param_1);
+	parameters[2] == 1 ? param_2 += 1 : 0;
+	parameters[2] == 2 ? param_2 += 4 : 0;
+	parameters[2] == 4 ? param_2 += 2 : 0;
+	return (param_0 + param_1 + param_2);
 }
