@@ -22,7 +22,7 @@ int create_file(char *source_filename)
 	} else {
 		new_filename = my_str_append(new_filename, ".cor");
 	}
-	int fd = open(new_filename, O_CREAT | O_WRONLY, S_IRWXU);
+	int fd = open(new_filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	return (fd);
 }
 
@@ -34,7 +34,6 @@ void clear_header(header_t *var)
 		str[i] = 0;
 }
 
-//TODO CHANGE header->prog_size = revert_int(1);
 void put_header(int fd)
 {
 	int magic = revert_int(COREWAR_EXEC_MAGIC);

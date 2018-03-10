@@ -55,6 +55,7 @@ int main(int ac, char **av)
 	int fd = create_file(av[1]);
 	put_header(fd);
 	write_operations(fd);
+	write_size(fd);
 	close(fd);
 	return (0);
 }

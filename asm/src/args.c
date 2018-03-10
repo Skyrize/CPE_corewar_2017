@@ -17,21 +17,45 @@ byte get_param_bytecode(char **words, int param_nbr)
 	byte ind[3] = {0xC0, 0x30, 0xC};
 	byte bin = 0;
 
-	for (int i = 0; i < param_nbr; ++i) {
-		if (words[i + 1][0] == 'r')
+	for (int i = 0; i < param_nbr; i++) {
+		if (words[i + 1][0] == 'r') {
 			bin += reg[i];
-		else if (words[i + 1][0] == DIRECT_CHAR)
+		} else if (words[i + 1][0] == DIRECT_CHAR) {
 			bin += dir[i];
-		else
+		} else {
 			bin += ind[i];
+		}
 	}
 	return (bin);
 }
 
-//TODO FILL
+label_t *get_label_by_name(char *name)
+{
+	label_t **root = get_label_list();
+	label_t *tmp = *root;
+
+	for (; tmp; tmp = tmp->next) {
+		if (my_strcmp(tmp->name, name) == 0)
+			return (tmp);
+	}
+	return (NULL);
+}
+
 int get_label_args(char *str)
 {
-	return (0);
+	label_t *label;
+	int pos = counter_b(0);
+
+	if (my_strlen(str) <= 2) {
+		my_putstr("invalid label name\n");
+		exit(84);
+	}
+	label = get_label_by_name(&str[2]);
+	if (!label) {
+		my_printf("label %s not found\n", &str[2]);
+		exit(84);
+	}
+	return (label->bytes_pos - pos);
 }
 
 int get_arg(char *str, args_type_t arg_type)
@@ -48,12 +72,12 @@ int get_arg(char *str, args_type_t arg_type)
 	} else if (arg_type == T_DIR) {
 		if (len < 2)
 			return (ERROR_INT);
-		if (str[1] == LABEL_CHAR)
+		res = my_getnbr(&str[1]);
+	} else {
+		if (is_label_arg(str) && !*(is_label_turn()))
 			res = get_label_args(str);
 		else
-			res = my_getnbr(&str[1]);
-	} else {
-		res = my_getnbr(str);
+			res = my_getnbr(str);
 	}
 	return (res);
 }
