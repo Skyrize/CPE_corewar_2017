@@ -36,6 +36,7 @@ int operate_or(champ_t *champ, pc_t *pc, byte *tab)
 	+ ((pc->idx + 1) % MEM_SIZE)));
 	int *final_parameters = fill_parameters_and_instruct(parameters);
 	int *all_value = malloc(sizeof(int) + 3);
+
 	if (check_parameters_and_instruct(parameters, champ, pc, 0) == 1)
 		return (1);
 	all_value[0] = parameters_zero(final_parameters, tab, pc, champ);
@@ -47,5 +48,6 @@ int operate_or(champ_t *champ, pc_t *pc, byte *tab)
 		return (1);
 	if (assign_to_last_register_or(all_value, champ, pc) == 84)
 		assign_champ_carry_false(champ, pc);
-	return (0);
+	free_star_int(parameters, all_value, final_parameters);
+	return (compute_bytes_read(champ, pc, parameters) + 1);
 }

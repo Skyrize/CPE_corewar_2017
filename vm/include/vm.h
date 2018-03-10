@@ -75,7 +75,7 @@ int *fill_parameters_and_instruct(int *parameters);
 int check_parameters_and_instruct(int *param, champ_t *champ, pc_t *, int);
 int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
 int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
-
+void free_star_int(int *first, int *second, int *third);
 /*
 ** instructions
 */

@@ -84,5 +84,6 @@ int operate_and(champ_t *champ, pc_t *pc, byte *tab)
 		return (1);
 	if (assign_to_last_register(all_value, champ, pc) == 84)
 		assign_champ_carry_false(champ, pc);
-	return (0);
+	free_star_int(parameters, all_value, final_parameters);
+	return (compute_bytes_read(champ, pc, parameters) + 1);
 }

@@ -25,7 +25,7 @@ op_t op_tab[] = {{"live", 1, {T_DIR}, 1, 10, &operate_live},
 		{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, \
 		10, 25, &operate_tmp},
 		{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, \
-		11, 25, &operate_tmp},
+		11, 25, &operate_sti},
 		{"fork", 1, {T_DIR}, 12, 800, &operate_fork},
 		{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, &operate_lld},
 		{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, \

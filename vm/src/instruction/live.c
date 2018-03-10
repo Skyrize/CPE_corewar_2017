@@ -14,7 +14,7 @@ int char_to_int(byte *num_champ)
 
 int verif_in_ll(champ_t *champ, char **name_champ, int number)
 {
-	while (champ->next != NULL) {
+	while (champ) {
 		if (champ->program_number == number) {
 			champ->alive = 1;
 			*name_champ = my_strdup(champ->program_name);
