@@ -12,8 +12,9 @@
 #include <sys/types.h>
 #include <stdio.h>
 
-#define LIVE "The player %d(%s)is alive."
 typedef unsigned char byte;
+#define LIVE "The player %d(%s) is alive.\n"
+#define WIN "The player %d(%s) has won.\n"
 #define C_CARRY champ->carry
 #define IDX_ADRESS (pc->idx + (get_num)
 
@@ -58,14 +59,14 @@ int get_int(byte *);
 int get_short_int(byte *);
 int reverse_int(int);
 int reverse_short_int(int);
-void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
+int memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
 int get_op(byte);
 int check_champs_live(champ_t *);
 void set_all_champs_pc_countdown(champ_t *, memory_t *);
-void set_pc_countdown(pc_t *, memory_t *);
+void set_pc_countdown(pc_t *, byte *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
 void start_cycle_game(unsigned char *, champ_t *);
 int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters);
@@ -79,9 +80,9 @@ void free_star_int(int *first, int *second, int *third);
 /*
 ** instructions
 */
+int operate_live(champ_t *, pc_t *, memory_t *);
 int operate_ld(champ_t *, pc_t *, byte *);
 int operate_sub(champ_t *, pc_t *, byte *);
-int operate_live(champ_t *, pc_t *, byte *);
 int operate_zjmp(champ_t *, pc_t *, byte *);
 int operate_lld(champ_t *, pc_t *, byte *);
 int operate_st(champ_t *, pc_t *, byte *);
@@ -99,5 +100,4 @@ int operate_tmp(champ_t *, pc_t*, byte *);
 
 void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
 void assign_result_operation_to_register(int, int, champ_t *, pc_t *);
-void add_pc(pc_t *, int, byte *);
 int get_register_value(pc_t *, champ_t *, int);
