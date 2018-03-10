@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <stdio.h>
 
 typedef unsigned char byte;
 #define LIVE "The player %d(%s) is alive.\n"
@@ -58,7 +59,7 @@ int get_int(byte *);
 int get_short_int(byte *);
 int reverse_int(int);
 int reverse_short_int(int);
-void memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
+int memory_allocation_to_champs(unsigned char *, champ_t *, int, char **);
 char *int_to_bin(unsigned int);
 int *assign_value_to_parameters(char *, int *);
 int *detect_parameters(int);
@@ -98,6 +99,5 @@ int operate_aff(champ_t *, pc_t *, byte *);
 int operate_tmp(champ_t *, pc_t*, byte *);
 
 void assign_new_value_to_new_registre(int, int, champ_t *, pc_t *);
-void assign_add_value_to_register(int, int, champ_t *, pc_t *);
-void add_pc_fork(pc_t *, int, byte *);
+void assign_result_operation_to_register(int, int, champ_t *, pc_t *);
 int get_register_value(pc_t *, champ_t *, int);

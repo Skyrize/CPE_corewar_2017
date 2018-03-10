@@ -22,8 +22,8 @@ void add_pc_fork(pc_t *pc, int fork_value, byte *tab)
 
 int operate_fork(champ_t *champs, pc_t* pc, byte *tab)
 {
-	int fork_value = get_int(tab + ((pc->idx + 1) % MEM_SIZE));
+	int fork_value = get_short_int(tab + ((pc->idx + 1) % MEM_SIZE));
 
 	add_pc_fork(pc, fork_value, tab);
-	return (4);
+	return (2);
 }
