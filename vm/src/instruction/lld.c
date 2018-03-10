@@ -40,10 +40,8 @@ int operate_lld(champ_t *champ, pc_t *pc, byte *tab)
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
 	if (parameters[0] == T_DIR) {
-		free(parameters);
 		return (read_t_dir_lld(tab, pc, champ) + 2);
 	} else if (parameters[0] == T_IND) {
-		free(parameters);
 		return (read_t_ind_lld(tab, pc, champ) + 2);
 	}
 	return (0);

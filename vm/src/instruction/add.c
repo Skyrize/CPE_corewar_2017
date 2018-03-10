@@ -54,7 +54,7 @@ int operate_add(champ_t *champ, pc_t *pc, byte *tab)
 
 	result_add = (a + b);
 	num_of_registre = *(tab + ((pc->idx + 4) % MEM_SIZE));
-	if (num_of_registre < 1 && num_of_registre > 16)
+	if (num_of_registre < 1 || num_of_registre > 16)
 		return (3);
 	assign_result_operation_to_register(result_add, num_of_registre,
 	champ, pc);

@@ -68,16 +68,13 @@ int operate_ld(champ_t *champ, pc_t *pc, byte *tab)
 
 	if (parameters[1] != 1) {
 		assign_champ_carry_false(champ, pc);
-		free(parameters);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
 	if (parameters[0] == T_DIR) {
 		read_t_dir_ld(tab, pc, champ);
-		free(parameters);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	} else if (parameters[0] == T_IND) {
 		read_t_ind_ld(tab, pc, champ);
-		free(parameters);
 		return (compute_bytes_read(champ, pc, parameters) + 1);
 	}
 	return (0);

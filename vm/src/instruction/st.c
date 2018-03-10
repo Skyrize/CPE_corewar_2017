@@ -43,14 +43,10 @@ int operate_st(champ_t *champs, pc_t *pc, byte *tab)
 	int *parameters = detect_parameters(*(tab + (pc->idx + 1) % MEM_SIZE));
 	int ret = 0;
 
-	if (parameters[0] != T_REG) {
-		assign_champ_carry_false(champs, pc);
-		free(parameters);
+	if (parameters[0] != T_REG)
 		return (compute_bytes_read(champs, pc, parameters) + 1);
-	}
 	if (parameters[1] == T_IND) {
 		ind_case_st(champs, pc, parameters, tab);
-		free(parameters);
 		return (compute_bytes_read(champs, pc, parameters) + 1);
 	}
 	reg_case_st(champs, pc, parameters, tab);

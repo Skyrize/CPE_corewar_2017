@@ -50,7 +50,6 @@ typedef struct memory_s {
 	unsigned char *vm;
 	int nbr_live;
 	int last_alive;
-	int dump_cycle;
 } memory_t;
 
 champ_t *set_champs_info(champ_t *, int , char **);
@@ -68,7 +67,7 @@ int check_champs_live(champ_t *);
 void set_all_champs_pc_countdown(champ_t *, memory_t *);
 void set_pc_countdown(pc_t *, byte *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
-void start_cycle_game(unsigned char *, champ_t *, int);
+void start_cycle_game(unsigned char *, champ_t *);
 int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters);
 void assign_champ_carry_false(champ_t *champ, pc_t *pc);
 void assign_champ_carry_true(champ_t *champ, pc_t *pc);
