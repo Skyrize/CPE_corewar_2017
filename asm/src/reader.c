@@ -11,15 +11,28 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-//TODO remove
-void log_instruction_list()
+bool *is_label_turn(void)
+{
+	static bool *res = NULL;
+
+	if (res == NULL) {
+		res = malloc(sizeof(*res));
+		*res = true;
+	}
+	return (res);
+}
+
+void reset_things(int fd)
 {
 	instruction_t **root = get_instructions();
-	instruction_t *tmp = *root;
+	int tmp;
 
-	for (; tmp; tmp = tmp->next) {
-		my_printf("%x\n", tmp->instruction_code);
-	}
+	tmp = counter(0);
+	counter(-tmp);
+	tmp = counter_b(0);
+	counter_b(-tmp);
+	*root = NULL;
+	lseek(fd, 0, SEEK_SET);
 }
 
 void check_syntax(void)
@@ -27,7 +40,16 @@ void check_syntax(void)
 	int fd = get_fd(NULL);
 	char *line = get_next_line(fd);
 	bool is_valid = true;
+	bool *label_turn = is_label_turn();
 
+	while (line) {
+		is_valid = is_line_valid(line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	*label_turn = false;
+	reset_things(fd);
+	line = get_next_line(fd);
 	while (line) {
 		is_valid = is_line_valid(line);
 		free(line);

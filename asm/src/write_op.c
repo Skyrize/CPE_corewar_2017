@@ -11,7 +11,7 @@
 
 bool is_printing_coding_byte(byte ins_tag)
 {
-	if (ins_tag == 0x1 || ins_tag == 0x09 || \
+	if (ins_tag == 0x01 || ins_tag == 0x09 || \
 	ins_tag == 0x0c || ins_tag == 0x0f) {
 		return (false);
 	}
@@ -20,6 +20,7 @@ bool is_printing_coding_byte(byte ins_tag)
 
 void write_std_operation(instruction_t *op, int fd)
 {
+	my_printf("writing operation %x\n", op->instruction_code);
 	write(fd, &(op->instruction_code), 1);
 	if (is_printing_coding_byte(op->instruction_code))
 		write(fd, &(op->coding_byte), 1);
@@ -28,7 +29,7 @@ void write_std_operation(instruction_t *op, int fd)
 			byte a = (byte) op->args[i];
 			write(fd, &a, 1);
 			counter(1);
-		}else if(op->args_types[i] == T_DIR) {
+		} else if(op->args_types[i] == T_DIR) {
 			int a = op->args[i];
 			a = revert_int(a);
 			write(fd, &a, 4);
@@ -43,6 +44,7 @@ void write_std_operation(instruction_t *op, int fd)
 
 void write_operation_index(instruction_t *op, int fd)
 {
+	my_printf("writing operation %x index\n", op->instruction_code);
 	write(fd, &(op->instruction_code), 1);
 	if (is_printing_coding_byte(op->instruction_code))
 		write(fd, &(op->coding_byte), 1);
@@ -61,10 +63,7 @@ void write_operation_index(instruction_t *op, int fd)
 
 void write_operation(instruction_t *op, int fd)
 {
-	byte a = op->instruction_code;
-
-	if (a == 0x09 || a == 0x0a || a == 0x0b || a == 0x0c ||
-		a == 0x0e || a == 0x0f)
+	if (is_index_operation(op->instruction_code))
 		write_operation_index(op, fd);
 	else
 		write_std_operation(op, fd);

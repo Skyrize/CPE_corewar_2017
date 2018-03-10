@@ -52,6 +52,7 @@ instruction_t *add_operation_to_list(instruction_t *instruction)
 	instruction_t **root_addr = get_instructions();
 	instruction_t *tmp = NULL;
 
+	counter_b(compute_fnc_size(instruction));
 	if (!(*root_addr)) {
 		*root_addr = instruction;
 		return (*root_addr);

@@ -27,7 +27,7 @@ int counter_b(int to_add)
 
 void write_size(int fd)
 {
-	int a = counter(0);
+	int a = counter_b(0);
 
 	a = revert_int(a);
 	lseek(fd, 0x88, SEEK_SET);

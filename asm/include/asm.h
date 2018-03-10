@@ -121,8 +121,6 @@ instruction_t *create_operation(char **words);
 
 void process_instruction_line(char **words);
 
-void log_double_string_array(char **str);
-
 /// add and return the value
 int counter(int to_add);
 
@@ -138,5 +136,19 @@ void write_operations(int fd);
 
 /// Must be at the end of editing
 void write_size(int fd);
+
+void scan_line_for_labels(char **words);
+
+bool is_index_operation(byte op_code);
+
+bool is_printing_coding_byte(byte ins_tag);
+
+int compute_fnc_size(instruction_t *op);
+
+bool is_label_arg(char *str);
+
+label_t **get_label_list(void);
+
+bool *is_label_turn(void);
 
 #endif /* !ASM_H_ */
