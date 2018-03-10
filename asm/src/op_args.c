@@ -19,7 +19,8 @@ args_type_t *get_args_types(char **words)
 	for (int i = 0; i < args_nbr; i++) {
 		if (words[i + 1][0] == 'r')
 			res[i] = T_REG;
-		else if (words[i + 1][0] == DIRECT_CHAR)
+		else if (words[i + 1][0] == DIRECT_CHAR &&
+			!is_label_arg(words[i + 1]))
 			res[i] = T_DIR;
 		else
 			res[i] = T_IND;

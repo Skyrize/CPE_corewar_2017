@@ -60,6 +60,7 @@ bool is_line_valid(char *line)
 	if (my_strlen(line) == 0)
 		return (true);
 	words = my_split(line, ' ');
+	scan_line_for_labels(words);
 	(is_label(words)) ? (begin_idx ++) : (0);
 	if (my_array_length((void **) words) <= begin_idx)
 		return (true);
