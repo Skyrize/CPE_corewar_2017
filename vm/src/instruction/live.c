@@ -33,5 +33,6 @@ int operate_live(champ_t *champ, pc_t *pc, memory_t *memory)
 
 	if (verif_in_ll(champ, &name_champ, (num_champ), memory) == 1)
 		my_printf(LIVE, (num_champ), name_champ);
+	free(name_champ);
 	return (4);
 }

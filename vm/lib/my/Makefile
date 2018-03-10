@@ -37,12 +37,17 @@ SRC	=	my_compute_power_rec.c\
 		my_strupcase.c\
 		my_swap.c\
 		my_putnbr_base.c\
+		my_putnbr_base_lowcase.c\
 		my_is_digit.c\
 		my_putlong_base.c\
-		printf.c\
-		flags_a.c\
-		flags_b.c\
-		flags_c.c\
+		my_printf/my_printf.c	\
+		my_printf/init.c	\
+		my_printf/char.c	\
+		my_printf/int.c	\
+		my_printf/special_characters.c	\
+		my_printf/str.c	\
+		my_printf/specifiers.c	\
+		my_printf/float.c	\
 		my_split.c\
 		get_next_line.c
 

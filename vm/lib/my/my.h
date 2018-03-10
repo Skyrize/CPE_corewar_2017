@@ -82,7 +82,7 @@ int	my_getnbr_base(char const *str, char const *base);
 
 int	my_isprintable(char const c);
 
-int	my_printf(char const *format, ...);
+int	my_printf(char *format, ...);
 
 int	my_is_digit(char c);
 
@@ -102,29 +102,37 @@ char	*get_next_line(int fd);
 
 bool	is_number(char *str);
 
-void	flag_c(va_list list, char *a);
-void	flag_s(va_list list, char *a);
-void	flag_d(va_list list, char *a);
-void	flag_pc(va_list list, char *a);
-void	flag_ld(va_list list, char *a);
-void	flag_hd(va_list list, char *a);
-void	flag_p(va_list list, char *a);
-void	flag_x(va_list list, char *a);
-void	flag_o(va_list list, char *a);
-void	flag_u(va_list list, char *a);
-void	flag_xx(va_list list, char *a);
-void 	flag_b(va_list list, char *a);
-void	flag_ss(va_list list, char *a);
+void my_putnbr_base_lowcase(long long nbr, int base);
 
-int	my_printf(char const *format, ...);
-
-typedef void (*oper_func)(va_list, char *);
-
-typedef struct operation {
+typedef struct tab_s {
 	char c;
-	oper_func operation;
-} operation_t;
+	void (*fptr)(va_list);
+} tab_t;
 
-extern const operation_t oper_array[];
+typedef struct spec_s {
+	char c;
+	int (*fptr)(va_list, int);
+} spec_t;
+
+void func_init(tab_t *print, spec_t *spec);
+void my_put_char(va_list);
+void my_put_int(va_list);
+void my_put_unsigned_int(va_list);
+void my_put_str(va_list);
+void my_put_ampersand(va_list);
+void my_putnbr_hexa(va_list);
+void my_putnbr_hexa_lowcase(va_list);
+void my_putnbr_octal(va_list);
+void my_putnbr_binary(va_list);
+void my_putnbr_base_lowcase(long long, int);
+void my_put_str_non_printable(va_list list);
+void my_put_pointer_adress(va_list list);
+int spec_zero(va_list, int);
+int spec_dot(va_list, int);
+int spec_space(va_list, int);
+void my_put_float(va_list);
+int spec_plus(va_list, int);
+int spec_minus(va_list, int);
+int spec_hashtag(va_list, int);
 
 #endif /* MY_H_ */

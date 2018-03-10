@@ -28,8 +28,6 @@ byte get_coding_byte(char **words)
 {
 	int command_idx = 0;
 
-	if (!is_valid_cmd(words))
-		return (-1);
 	words = get_words_without_label(words);
 	command_idx = get_fnc_idx(words[0]);
 	return (get_param_bytecode(words, op_tab[command_idx].nbr_args));
@@ -54,6 +52,7 @@ instruction_t *add_operation_to_list(instruction_t *instruction)
 	instruction_t **root_addr = get_instructions();
 	instruction_t *tmp = NULL;
 
+	counter_b(compute_fnc_size(instruction));
 	if (!(*root_addr)) {
 		*root_addr = instruction;
 		return (*root_addr);
