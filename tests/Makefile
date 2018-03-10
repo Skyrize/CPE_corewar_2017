@@ -28,6 +28,9 @@ SRCTEST	=	../asm/src/io.c	\
 		../asm/src/reader.c	\
 		../asm/src/str.c	\
 		./src/test_is_printing_coding_byte.c	\
+		./src/test_clear_header.c	\
+		./src/test_get_cmd_data.c	\
+		./src/test_revert_int.c	\
 
 OBJTEST	=	$(SRCTEST:.c=.o)
 

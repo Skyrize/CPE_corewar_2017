@@ -11,5 +11,6 @@
 #include <criterion/redirect.h>
 
 bool is_printing_coding_byte(byte ins_tag);
+void clear_header(header_t *var);
 
 #endif /* TEST_H_ */
