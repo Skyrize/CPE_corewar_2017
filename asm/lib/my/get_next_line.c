@@ -62,7 +62,7 @@ char *gnl(int fd, char **saver, int *lr, char *tmp)
 		return (buffer);
 	}
 	*saver = my_strcat_gnl(*saver, buffer);
-	return (1);
+	return ((char *) 1);
 }
 
 char *get_next_line(int fd)
