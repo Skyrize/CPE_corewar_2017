@@ -53,14 +53,10 @@ void add_label(label_t *label)
 
 	if (!tmp) {
 		*act_label = label;
-		my_printf("Label \"%s\" added on %d bytes\n", \
-	label->name, label->bytes_pos);
 		return;
 	}
 	for (; tmp->next; tmp = tmp->next);
 	tmp->next = label;
-	my_printf("Label \"%s\" added on %d bytes\n", \
-	label->name, label->bytes_pos);
 }
 
 void scan_line_for_labels(char **words)
@@ -74,6 +70,5 @@ void scan_line_for_labels(char **words)
 	label->name[my_strlen(label->name) - 1] = '\0';
 	label->bytes_pos = counter_b(0);
 	label->next = NULL;
-	my_printf("label found: %s\n", label->name);
 	add_label(label);
 }

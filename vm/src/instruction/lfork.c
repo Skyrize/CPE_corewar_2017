@@ -12,6 +12,7 @@ void add_pc_lfork(pc_t *pc, int fork_value, byte *tab)
 	pc_t *tmp = malloc(sizeof(*tmp));
 
 	tmp->idx = (pc->idx + fork_value) % MEM_SIZE;
+	//my_printf("debug : %d \n", tmp->idx);
 	tmp->champ_owner = pc->champ_owner;
 	tmp->next = NULL;
 	while (pc->next)

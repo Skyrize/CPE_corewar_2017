@@ -47,17 +47,21 @@ int operate_ld(champ_t *champ, pc_t *pc, byte *tab)
 {
 	int *parameters = detect_parameters(*(tab + ((pc->idx + 1)
 	% MEM_SIZE)));
+	int ret = compute_bytes_read(champ, pc, parameters) + 1;
 
 	if (parameters[1] != 1) {
 		assign_champ_carry_false(champ, pc);
-		return (compute_bytes_read(champ, pc, parameters) + 1);
+		free(parameters);
+		return (ret);
 	}
 	if (parameters[0] == T_DIR) {
 		read_t_dir_ld(tab, pc, champ);
-		return (compute_bytes_read(champ, pc, parameters) + 1);
+		free(parameters);
+		return (ret);
 	} else if (parameters[0] == T_IND) {
 		read_t_ind_ld(tab, pc, champ);
-		return (compute_bytes_read(champ, pc, parameters) + 1);
+		free(parameters);
+		return (ret);
 	}
 	return (0);
 }
