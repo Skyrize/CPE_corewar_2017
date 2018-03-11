@@ -17,6 +17,7 @@ typedef unsigned char byte;
 #define WIN "The player %d(%s) has won.\n"
 #define C_CARRY champ->carry
 #define IDX_ADRESS (pc->idx + (get_num)
+#define STI_PARAM (*(tab + pc->idx + param[3]) % MEM_SIZE)
 
 union number {
 	int nbr;
@@ -76,6 +77,9 @@ int check_parameters_and_instruct(int *param, champ_t *champ, pc_t *, int);
 int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
 int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
 void free_star_int(int *first, int *second, int *third);
+int how_much_read_sti(int *parameters);
+int check_parameters_sti(int *parameters);
+int check_reg_sti(int *param, int first, int second, int third);
 /*
 ** instructions
 */
