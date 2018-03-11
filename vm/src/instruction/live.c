@@ -14,7 +14,6 @@ int char_to_int(byte *num_champ)
 
 int verif_in_ll(champ_t *champ, char **name_champ, int number, memory_t *memory)
 {
-	//my_printf("debug LIVE : %d && %d\n", champ->program_number, number);
 	while (champ) {
 		if (champ->program_number == number) {
 			champ->alive = 1;
@@ -29,7 +28,6 @@ int verif_in_ll(champ_t *champ, char **name_champ, int number, memory_t *memory)
 
 int operate_live(champ_t *champ, pc_t *pc, memory_t *memory)
 {
-	//my_printf("LIVE pc -> idx: %d\n", pc->idx);
 	int num_champ = get_int(memory->vm + ((pc->idx + 1) % MEM_SIZE));
 	char *name_champ = NULL;
 
