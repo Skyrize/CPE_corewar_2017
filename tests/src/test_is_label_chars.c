@@ -8,7 +8,7 @@
 #include <op.h>
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(is_label_chars, random_true_label_test)
 {

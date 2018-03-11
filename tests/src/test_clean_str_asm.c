@@ -8,7 +8,7 @@
 #include <op.h>
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(clean_str_asm, simple_replace_test)
 {

@@ -8,7 +8,7 @@
 #include <op.h>
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(tab_to_spaces, simple_replace_test)
 {

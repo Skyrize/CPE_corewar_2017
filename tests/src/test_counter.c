@@ -8,7 +8,7 @@
 #include <op.h>
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(counter, test_one_call_positive)
 {

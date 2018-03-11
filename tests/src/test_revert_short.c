@@ -7,7 +7,7 @@
 
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(revert_short, test_zero)
 {
