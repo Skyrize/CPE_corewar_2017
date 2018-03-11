@@ -13,5 +13,6 @@
 bool is_printing_coding_byte(byte ins_tag);
 void clear_header(header_t *var);
 char *remove_start_line(char *line);
+int is_label_present(char **words);
 
 #endif /* TEST_H_ */
