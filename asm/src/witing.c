@@ -23,6 +23,7 @@ int create_file(char *source_filename)
 		new_filename = my_str_append(new_filename, ".cor");
 	}
 	int fd = open(new_filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	free(new_filename);
 	return (fd);
 }
 
@@ -47,6 +48,7 @@ void put_header(int fd)
 	my_strcpy(header->comment, data->description);
 	my_strcpy(header->prog_name, data->name);
 	written = write(fd, header, sizeof(*header));
+	free(header);
 	if (written != sizeof(*header)) {
 		my_putstr("cannot write in file\n");
 		exit(84);

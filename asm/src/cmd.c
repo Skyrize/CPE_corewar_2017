@@ -59,8 +59,10 @@ bool is_valid_cmd(char **words)
 		data = get_cmd_data();
 		if (my_strcmp(words[0], NAME_CMD_STRING) == 0) {
 			char *r = str_array_to_str(words);
+			free(data->name);
 			data->name = get_cmd_str(r);
 		} else {
+			free(data->description);
 			data->description = get_cmd_str(\
 			str_array_to_str(words));
 		}

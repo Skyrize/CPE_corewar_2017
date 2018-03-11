@@ -57,5 +57,6 @@ int main(int ac, char **av)
 	write_operations(fd);
 	write_size(fd);
 	close(fd);
+	free_content();
 	return (0);
 }

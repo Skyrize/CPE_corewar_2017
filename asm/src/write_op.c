@@ -20,7 +20,6 @@ bool is_printing_coding_byte(byte ins_tag)
 
 void write_std_operation(instruction_t *op, int fd)
 {
-	my_printf("writing operation %x\n", op->instruction_code);
 	write(fd, &(op->instruction_code), 1);
 	if (is_printing_coding_byte(op->instruction_code))
 		write(fd, &(op->coding_byte), 1);
@@ -44,7 +43,6 @@ void write_std_operation(instruction_t *op, int fd)
 
 void write_operation_index(instruction_t *op, int fd)
 {
-	my_printf("writing operation %x index\n", op->instruction_code);
 	write(fd, &(op->instruction_code), 1);
 	if (is_printing_coding_byte(op->instruction_code))
 		write(fd, &(op->coding_byte), 1);

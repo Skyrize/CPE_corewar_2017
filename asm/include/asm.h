@@ -151,4 +151,6 @@ label_t **get_label_list(void);
 
 bool *is_label_turn(void);
 
+void free_content(void);
+
 #endif /* !ASM_H_ */
