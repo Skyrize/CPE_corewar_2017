@@ -35,7 +35,7 @@ int operate_or(champ_t *champ, pc_t *pc, byte *tab)
 	int *parameters = detect_parameters(*(tab
 	+ ((pc->idx + 1) % MEM_SIZE)));
 	int *final_parameters = fill_parameters_and_instruct(parameters);
-	int *all_value = malloc(sizeof(int) + 3);
+	int *all_value = malloc(sizeof(int) * 3);
 
 	if (check_parameters_and_instruct(parameters, champ, pc, 0) == 1)
 		return (1);
