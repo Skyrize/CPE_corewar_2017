@@ -7,7 +7,7 @@
 
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "../include/test.h"
 
 Test(get_cmd_data, test_data_first_call)
 {
