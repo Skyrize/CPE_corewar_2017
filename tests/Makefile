@@ -40,6 +40,7 @@ SRCTEST	=	../asm/src/io.c	\
 		./src/test_clean_str_asm.c	\
 		./src/test_counter.c	\
 		./src/test_is_label_present.c	\
+		./src/test_is_label_chars.c	\
 
 OBJTEST	=	$(SRCTEST:.c=.o)
 
