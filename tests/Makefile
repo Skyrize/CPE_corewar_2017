@@ -31,6 +31,7 @@ SRCTEST	=	../asm/src/io.c	\
 		./src/test_clear_header.c	\
 		./src/test_get_cmd_data.c	\
 		./src/test_revert_int.c	\
+		./src/test_revert_short.c	\
 
 OBJTEST	=	$(SRCTEST:.c=.o)
 
