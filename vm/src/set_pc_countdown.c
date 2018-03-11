@@ -9,6 +9,8 @@
 
 void set_pc_countdown(pc_t *pc, byte *vm)
 {
+	//if (pc->idx < 0)
+	//	my_printf("debug pc idx : %d\n", pc->idx);
 	int tab_idx = get_op(vm[pc->idx]);
 
 	if (tab_idx == 84) {
