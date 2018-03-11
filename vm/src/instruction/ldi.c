@@ -58,10 +58,14 @@ int operate_ldi(champ_t *champs, pc_t *pc, byte *tab)
 	int reg = *(tab + (pc->idx + compute_bytes_read_ldi(params) + 1)
 		% MEM_SIZE);
 	int res = first + second;
+	int ret = compute_bytes_read_ldi(params) + 1;
 
-	if (params[2] != T_REG || reg < 1 || reg > 16)
-		return (compute_bytes_read_ldi(params) + 1);
+	if (params[2] != T_REG || reg < 1 || reg > 16) {
+		free(params);
+		return (ret);
+	}
 	assign_new_value_to_new_registre(get_int(tab + pc->idx + res % IDX_MOD)
 						% MEM_SIZE, reg, champs, pc);
-	return (compute_bytes_read_ldi(params) + 1);
+	free(params);
+	return (ret);
 }

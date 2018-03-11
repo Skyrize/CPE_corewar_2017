@@ -7,7 +7,7 @@
 
 #include <asm.h>
 #include <my.h>
-#include "include/test.h"
+#include "test.h"
 
 Test(is_printing_coding_byte, test_0x01)
 {

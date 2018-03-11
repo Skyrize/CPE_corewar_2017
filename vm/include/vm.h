@@ -17,6 +17,7 @@ typedef unsigned char byte;
 #define WIN "The player %d(%s) has won.\n"
 #define C_CARRY champ->carry
 #define IDX_ADRESS (pc->idx + (get_num)
+#define STI_PARAM (*(tab + pc->idx + param[3]) % MEM_SIZE)
 
 union number {
 	int nbr;
@@ -50,7 +51,6 @@ typedef struct memory_s {
 	unsigned char *vm;
 	int nbr_live;
 	int last_alive;
-	int dump_cycle;
 } memory_t;
 
 champ_t *set_champs_info(champ_t *, int , char **);
@@ -68,7 +68,7 @@ int check_champs_live(champ_t *);
 void set_all_champs_pc_countdown(champ_t *, memory_t *);
 void set_pc_countdown(pc_t *, byte *);
 int execute_instruct(pc_t *, memory_t *, champ_t *);
-void start_cycle_game(unsigned char *, champ_t *, int);
+void start_cycle_game(unsigned char *, champ_t *);
 int compute_bytes_read(champ_t *champ, pc_t *pc, int *parameters);
 void assign_champ_carry_false(champ_t *champ, pc_t *pc);
 void assign_champ_carry_true(champ_t *champ, pc_t *pc);
@@ -76,7 +76,10 @@ int *fill_parameters_and_instruct(int *parameters);
 int check_parameters_and_instruct(int *param, champ_t *champ, pc_t *, int);
 int parameters_two(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
 int parameters_zero(int *parameters, byte *tab, pc_t *pc, champ_t *champ);
-
+void free_star_int(int *first, int *second, int *third);
+int how_much_read_sti(int *parameters);
+int check_parameters_sti(int *parameters);
+int check_reg_sti(int *param, int first, int second, int third);
 /*
 ** instructions
 */
