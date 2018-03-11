@@ -47,9 +47,14 @@ int operate_add(champ_t *champ, pc_t *pc, byte *tab)
 {
 	int result_add = 0;
 	int num_of_registre = 0;
-	int a = get_register_value(pc, champ,
+	int a = 0;
+	int b = 0;
+
+	if (pc->idx < 0)
+		return (3);
+	a = get_register_value(pc, champ,
 	*(tab + ((pc->idx + 2) % MEM_SIZE)));
-	int b = get_register_value(pc, champ,
+	b = get_register_value(pc, champ,
 	*(tab + ((pc->idx + 3) % MEM_SIZE)));
 
 	result_add = (a + b);
