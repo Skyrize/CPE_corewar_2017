@@ -43,24 +43,6 @@ int read_t_ind_ld(byte *tab, pc_t *pc, champ_t *champ)
 	return (2);
 }
 
-void assign_champ_carry_false(champ_t *champ, pc_t *pc)
-{
-	while (champ) {
-		if (champ->program_number == pc->champ_owner)
-			champ->carry = false;
-		champ = champ->next;
-	}
-}
-
-void assign_champ_carry_true(champ_t *champ, pc_t *pc)
-{
-	while (champ) {
-		if (champ->program_number == pc->champ_owner)
-			champ->carry = true;
-		champ = champ->next;
-	}
-}
-
 int operate_ld(champ_t *champ, pc_t *pc, byte *tab)
 {
 	int *parameters = detect_parameters(*(tab + ((pc->idx + 1)

@@ -53,7 +53,6 @@ int operate_add(champ_t *champ, pc_t *pc, byte *tab)
 	*(tab + ((pc->idx + 3) % MEM_SIZE)));
 
 	result_add = (a + b);
-	//my_printf("pc-idx [add] : [%d]\n", pc->idx);
 	num_of_registre = *(tab + ((pc->idx + 4) % MEM_SIZE));
 	if (num_of_registre < 1 || num_of_registre > 16)
 		return (3);
