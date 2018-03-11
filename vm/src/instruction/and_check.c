@@ -11,7 +11,7 @@ int check_parameters(int *parameters)
 {
 	if ((parameters[0] == 1 || parameters[0] == 2 || parameters[0] == 4)
 	|| (parameters[1] == 1 || parameters[1] == 2 || parameters[1] == 4)
-	|| (parameters[2] == 1 || parameters[2] == 2 || parameters[2] == 4))
+	|| (parameters[2] == 1))
 		return (0);
 	return (84);
 }
