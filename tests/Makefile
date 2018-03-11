@@ -34,6 +34,9 @@ SRCTEST	=	../asm/src/io.c	\
 		./src/test_get_cmd_data.c	\
 		./src/test_revert_int.c	\
 		./src/test_revert_short.c	\
+		./src/test_comma_to_spaces.c	\
+		./src/test_tab_to_spaces.c	\
+		./src/test_remove_start_line.c	\
 
 OBJTEST	=	$(SRCTEST:.c=.o)
 
