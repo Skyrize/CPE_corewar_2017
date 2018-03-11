@@ -39,11 +39,10 @@ void check_syntax(void)
 {
 	int fd = get_fd(NULL);
 	char *line = get_next_line(fd);
-	bool is_valid = true;
 	bool *label_turn = is_label_turn();
 
 	while (line) {
-		is_valid = is_line_valid(line);
+		is_line_valid(line);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -51,7 +50,7 @@ void check_syntax(void)
 	reset_things(fd);
 	line = get_next_line(fd);
 	while (line) {
-		is_valid = is_line_valid(line);
+		is_line_valid(line);
 		free(line);
 		line = get_next_line(fd);
 	}
