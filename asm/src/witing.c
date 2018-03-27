@@ -22,7 +22,8 @@ int create_file(char *source_filename)
 	} else {
 		new_filename = my_str_append(new_filename, ".cor");
 	}
-	int fd = open(new_filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	int fd = open(new_filename, O_CREAT | O_WRONLY | O_TRUNC,
+		      S_IRWXU | S_IRWXO | S_IRWXG);
 	free(new_filename);
 	return (fd);
 }
