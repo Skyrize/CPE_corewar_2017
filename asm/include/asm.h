@@ -153,4 +153,6 @@ bool *is_label_turn(void);
 
 void free_content(void);
 
+unsigned int get_uint(char const *nbr);
+
 #endif /* !ASM_H_ */

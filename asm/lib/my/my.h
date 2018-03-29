@@ -104,6 +104,8 @@ bool	is_number(char *str);
 
 char	*str_array_to_str(char **words);
 
+int	my_show_word_array(char * const *tab);
+
 void	flag_c(va_list list, char *a);
 void	flag_s(va_list list, char *a);
 void	flag_d(va_list list, char *a);

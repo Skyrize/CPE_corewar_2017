@@ -6,6 +6,7 @@
 */
 
 #include <asm.h>
+#include <limits.h>
 
 int revert_int(int nbr)
 {
@@ -37,4 +38,18 @@ short revert_short(short nbr)
 	a.str[0] = tmp_b;
 	a.str[1] = tmp_a;
 	return (a.i);
+}
+
+unsigned int get_uint(char const *nbr)
+{
+	unsigned long number = 0;
+	int is_neg = 1;
+	int i = 0;
+
+	for (; nbr[i] == '-' || nbr[i] == '+'; i++)
+		(nbr[i] == '-' ? is_neg *= -1 : 0);
+	for (; nbr[i] >= '0' && nbr[i] <= '9'; i++)
+		number = number * 10 + nbr[i] - 48;
+	(number > UINT_MAX || number < 0) ? number = 0 : number;
+	return ((unsigned int)(is_neg == -1 ? number *= -1 : number));
 }
