@@ -73,7 +73,7 @@ void write_operations(int fd)
 
 	if (!ins_list)
 		return;
-	for(; ins_list; ins_list = ins_list->next) {
+	for (; ins_list; ins_list = ins_list->next) {
 		write_operation(ins_list, fd);
 	}
 }

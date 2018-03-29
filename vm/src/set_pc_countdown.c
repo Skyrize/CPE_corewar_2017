@@ -9,8 +9,11 @@
 
 void set_pc_countdown(pc_t *pc, byte *vm)
 {
-	int tab_idx = get_op(vm[pc->idx]);
+	int tab_idx = 0;
 
+	if (pc->idx < 0)
+		pc->idx += MEM_SIZE;
+	tab_idx = get_op(vm[pc->idx]);
 	if (tab_idx == 84) {
 		pc->countdown = 0;
 		return;

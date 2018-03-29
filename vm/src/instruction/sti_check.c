@@ -16,7 +16,6 @@ int check_reg_sti(int *param, int first, int second, int third)
 	return (0);
 }
 
-
 int how_much_read_sti(int *parameters)
 {
 	int param_0 = 0;
