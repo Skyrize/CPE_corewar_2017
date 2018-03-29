@@ -6,12 +6,12 @@
 #*
 *#
 asm/asm
-corewar
+corewar/corewar
 cmake-build-debug
 CMakeLists.txt
 *.s
 *.cor
 compiler/include/my.h
-vm/include/my.h
+corewar/include/my.h
 mouli_ld_ldi.s
 *.cor
