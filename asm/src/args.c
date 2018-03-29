@@ -72,7 +72,7 @@ int get_arg(char *str, args_type_t arg_type)
 	} else if (arg_type == T_DIR) {
 		if (len < 2)
 			return (ERROR_INT);
-		res = my_getnbr(&str[1]);
+		res = get_uint(&str[1]);
 	} else {
 		if (is_label_arg(str) && !*(is_label_turn()))
 			res = get_label_args(str);
