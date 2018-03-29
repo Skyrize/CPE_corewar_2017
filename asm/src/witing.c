@@ -15,16 +15,23 @@ int create_file(char *source_filename)
 {
 	char *new_filename = my_strdup(source_filename);
 	int len = my_strlen(new_filename);
+	int mark = 0;
 
+	if (new_filename[my_strlen(new_filename) - 1] == '/')
+		new_filename[my_strlen(new_filename) - 1] = '\0';
 	if (my_strcmp(&new_filename[len - 2], ".s") == 0) {
 		new_filename[len - 2] = '\0';
 		new_filename = my_str_append(new_filename, ".cor");
 	} else {
 		new_filename = my_str_append(new_filename, ".cor");
 	}
+	for (int i = 0; new_filename[i]; i++)
+		if (new_filename[i] == '/')
+			mark = i;
+	new_filename = &new_filename[mark + 1];
 	int fd = open(new_filename, O_CREAT | O_WRONLY | O_TRUNC,
 		      S_IRWXU | S_IRWXO | S_IRWXG);
-	free(new_filename);
+	my_printf("filename: %s\n", new_filename);
 	return (fd);
 }
 
